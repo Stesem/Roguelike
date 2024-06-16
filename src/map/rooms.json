@@ -1,0 +1,14 @@
+
+{
+    "width": 800,
+    "height": 600,
+    "walls": [
+        {"image": "wall_horizontal.png", "x": 0, "y": 0, "width": 800, "height": 32},
+        {"image": "wall_horizontal.png", "x": 0, "y": 568, "width": 800, "height": 32},
+        {"image": "wall_vertical.png", "x": 0, "y": 0, "width": 32, "height": 600},
+        {"image": "wall_vertical.png", "x": 768, "y": 0, "width": 32, "height": 600}
+    ],
+    "floor": [
+        {"image": "floor_tile.png", "x": 0, "y": 0, "width": 800, "height": 600}
+    ]
+}

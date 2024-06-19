@@ -8,50 +8,50 @@ class MapLayout:
         self.start_position = self.size // 2
         self.elem_count = 0
 
-    def __fill_layout_recursive(self, position_j, position_i, elem_quantity):
-        if (self.elem_count == elem_quantity) or self.layout[position_j][position_i]:
+    def __fill_layout_recursive(self, row_index, column_index, elem_quantity):
+        if (self.elem_count == elem_quantity) or self.layout[row_index][column_index]:
             return
-        if (position_j > (self.size - 1)) or (position_j < 0):
+        if (row_index > (self.size - 1)) or (row_index < 0):
             return
-        if (position_i > (self.size - 1)) or (position_i < 0):
+        if (column_index > (self.size - 1)) or (column_index < 0):
             return
         self.elem_count += 1
-        self.layout[position_j][position_i] = True
+        self.layout[row_index][column_index] = True
         offsets = {"right": (0, 1), "left": (0, -1), "up": (-1, 0), "down": (1, 0)}
         free_places = []
 
         if (
-            position_j + offsets["right"][0] < self.size
-            and position_i + offsets["right"][1] < self.size
-            and not self.layout[position_j + offsets["right"][0]][
-                position_i + offsets["right"][1]
+            row_index + offsets["right"][0] < self.size
+            and column_index + offsets["right"][1] < self.size
+            and not self.layout[row_index + offsets["right"][0]][
+                column_index + offsets["right"][1]
             ]
         ):
             free_places.append("right")
 
         if (
-            position_j + offsets["left"][0] >= 0
-            and position_i + offsets["left"][1] >= 0
-            and not self.layout[position_j + offsets["left"][0]][
-                position_i + offsets["left"][1]
+            row_index + offsets["left"][0] >= 0
+            and column_index + offsets["left"][1] >= 0
+            and not self.layout[row_index + offsets["left"][0]][
+                column_index + offsets["left"][1]
             ]
         ):
             free_places.append("left")
 
         if (
-            position_j + offsets["up"][0] >= 0
-            and position_i + offsets["up"][1] >= 0
-            and not self.layout[position_j + offsets["up"][0]][
-                position_i + offsets["up"][1]
+            row_index + offsets["up"][0] >= 0
+            and column_index + offsets["up"][1] >= 0
+            and not self.layout[row_index + offsets["up"][0]][
+                column_index + offsets["up"][1]
             ]
         ):
             free_places.append("up")
 
         if (
-            position_j + offsets["down"][0] < self.size
-            and position_i + offsets["down"][1] < self.size
-            and not self.layout[position_j + offsets["down"][0]][
-                position_i + offsets["down"][1]
+            row_index + offsets["down"][0] < self.size
+            and column_index + offsets["down"][1] < self.size
+            and not self.layout[row_index + offsets["down"][0]][
+                column_index + offsets["down"][1]
             ]
         ):
             free_places.append("down")
@@ -64,8 +64,8 @@ class MapLayout:
         while quantity_free_places > 0 and free_places:
             shuffle(free_places)
             self.__fill_layout_recursive(
-                position_j + offsets[free_places[0]][0],
-                position_i + offsets[free_places[0]][1],
+                row_index + offsets[free_places[0]][0],
+                column_index + offsets[free_places[0]][1],
                 elem_quantity,
             )
             del free_places[0]

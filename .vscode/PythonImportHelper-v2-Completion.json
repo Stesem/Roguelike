@@ -1,0 +1,269 @@
+[
+    {
+        "label": "Room",
+        "importPath": "src.map.room",
+        "description": "src.map.room",
+        "isExtraImport": true,
+        "detail": "src.map.room",
+        "documentation": {}
+    },
+    {
+        "label": "MapLayout",
+        "importPath": "src.map.map_layout",
+        "description": "src.map.map_layout",
+        "isExtraImport": true,
+        "detail": "src.map.map_layout",
+        "documentation": {}
+    },
+    {
+        "label": "MapLayout",
+        "importPath": "src.map.map_layout",
+        "description": "src.map.map_layout",
+        "isExtraImport": true,
+        "detail": "src.map.map_layout",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "shuffle",
+        "importPath": "random",
+        "description": "random",
+        "isExtraImport": true,
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "randint",
+        "importPath": "random",
+        "description": "random",
+        "isExtraImport": true,
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "pygame",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pygame",
+        "description": "pygame",
+        "detail": "pygame",
+        "documentation": {}
+    },
+    {
+        "label": "Group",
+        "importPath": "pygame.sprite",
+        "description": "pygame.sprite",
+        "isExtraImport": true,
+        "detail": "pygame.sprite",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "EntityBase",
+        "importPath": "src.players.entity_base",
+        "description": "src.players.entity_base",
+        "isExtraImport": true,
+        "detail": "src.players.entity_base",
+        "documentation": {}
+    },
+    {
+        "label": "EntityBase",
+        "importPath": "src.players.entity_base",
+        "description": "src.players.entity_base",
+        "isExtraImport": true,
+        "detail": "src.players.entity_base",
+        "documentation": {}
+    },
+    {
+        "label": "sqrt",
+        "importPath": "math",
+        "description": "math",
+        "isExtraImport": true,
+        "detail": "math",
+        "documentation": {}
+    },
+    {
+        "label": "Player",
+        "importPath": "src.players.player",
+        "description": "src.players.player",
+        "isExtraImport": true,
+        "detail": "src.players.player",
+        "documentation": {}
+    },
+    {
+        "label": "Dungeon",
+        "importPath": "src.map.dungeon",
+        "description": "src.map.dungeon",
+        "isExtraImport": true,
+        "detail": "src.map.dungeon",
+        "documentation": {}
+    },
+    {
+        "label": "Game",
+        "importPath": "src.game",
+        "description": "src.game",
+        "isExtraImport": true,
+        "detail": "src.game",
+        "documentation": {}
+    },
+    {
+        "label": "BaseItem",
+        "kind": 6,
+        "importPath": "src.items.base_item",
+        "description": "src.items.base_item",
+        "peekOfCode": "class BaseItem():\n    def __init__(self):\n        pass\n    def use(self):\n        pass",
+        "detail": "src.items.base_item",
+        "documentation": {}
+    },
+    {
+        "label": "Dungeon",
+        "kind": 6,
+        "importPath": "src.map.dungeon",
+        "description": "src.map.dungeon",
+        "peekOfCode": "class Dungeon:\n    def __init__(self, map_pattern_size):\n        self.map_layout = MapLayout(map_pattern_size)\n        self.map = [\n            [None for _ in range(map_pattern_size)] for _ in range(map_pattern_size)\n        ]\n    def _check_neighbors(self, row_index, colomn_index, current_room):\n        neighbor_directions = {\n            \"right\": (0, 1),\n            \"left\": (0, -1),",
+        "detail": "src.map.dungeon",
+        "documentation": {}
+    },
+    {
+        "label": "MapLayout",
+        "kind": 6,
+        "importPath": "src.map.map_layout",
+        "description": "src.map.map_layout",
+        "peekOfCode": "class MapLayout:\n    def __init__(self, size):\n        self.size = size\n        self.layout = [[False for _ in range(self.size)] for _ in range(self.size)]\n        self.start_position = self.size // 2\n        self.elem_count = 0\n    def __fill_layout_recursive(self, row_index, column_index, elem_quantity):\n        if (self.elem_count == elem_quantity) or self.layout[row_index][column_index]:\n            return\n        if (row_index > (self.size - 1)) or (row_index < 0):",
+        "detail": "src.map.map_layout",
+        "documentation": {}
+    },
+    {
+        "label": "Passage",
+        "kind": 6,
+        "importPath": "src.map.room",
+        "description": "src.map.room",
+        "peekOfCode": "class Passage:\n    def __init__(self, from_room, to_room, image):\n        self.image = image\n        self.from_room = from_room\n        self.to_room = to_room\nclass Room:\n    def __init__(self):\n        self.passages = {\n            \"right\": Passage(),\n            \"left\": Passage(),",
+        "detail": "src.map.room",
+        "documentation": {}
+    },
+    {
+        "label": "Room",
+        "kind": 6,
+        "importPath": "src.map.room",
+        "description": "src.map.room",
+        "peekOfCode": "class Room:\n    def __init__(self):\n        self.passages = {\n            \"right\": Passage(),\n            \"left\": Passage(),\n            \"up\": Passage(),\n            \"down\": Passage(),\n        }\n        self.load_from_json()\n    def load_from_json(self):",
+        "detail": "src.map.room",
+        "documentation": {}
+    },
+    {
+        "label": "create_sprite",
+        "kind": 2,
+        "importPath": "src.map.room",
+        "description": "src.map.room",
+        "peekOfCode": "def create_sprite(image, sprite_info):\n    sprite = pygame.sprite.Sprite()\n    sprite.image = image\n    sprite.rect = pygame.Rect(\n        sprite_info[\"x\"],\n        sprite_info[\"y\"],\n        sprite_info[\"width\"],\n        sprite_info[\"height\"],\n    )\n    return sprite",
+        "detail": "src.map.room",
+        "documentation": {}
+    },
+    {
+        "label": "create_sprites_group",
+        "kind": 2,
+        "importPath": "src.map.room",
+        "description": "src.map.room",
+        "peekOfCode": "def create_sprites_group(sprites_info):\n    group = Group()\n    for sprite_info in sprites_info:\n        image = pygame.image.load(sprite_info[\"image\"]).convert_alpha()\n        sprite = create_sprite(image, sprite_info)\n        group.add(sprite)\n    return group\nclass Passage:\n    def __init__(self, from_room, to_room, image):\n        self.image = image",
+        "detail": "src.map.room",
+        "documentation": {}
+    },
+    {
+        "label": "Enemy",
+        "kind": 6,
+        "importPath": "src.players.enemies",
+        "description": "src.players.enemies",
+        "peekOfCode": "class Enemy(EntityBase):\n    def __init__(self):\n        self.protection = 0\n    def move(self):\n        pass",
+        "detail": "src.players.enemies",
+        "documentation": {}
+    },
+    {
+        "label": "EntityBase",
+        "kind": 6,
+        "importPath": "src.players.entity_base",
+        "description": "src.players.entity_base",
+        "peekOfCode": "class EntityBase():\n    def __init__(self, game, name):\n        self.game = game\n        self.name = name\n        self.path = f'assets/characters/{self.name}'\n        self.image = self.image = pygame.image.load(f'assets/characters/{name}/{name}0.png')\n        self.rect = self.image.get_rect()\n        self.velocity = [0, 0]\n        self.direction = 'right'\n        self.can_move = True",
+        "detail": "src.players.entity_base",
+        "documentation": {}
+    },
+    {
+        "label": "Player",
+        "kind": 6,
+        "importPath": "src.players.player",
+        "description": "src.players.player",
+        "peekOfCode": "class Player(EntityBase):\n    name = \"player\"\n    speed = 10\n    max_hp = 100\n    shield = 1\n    strength = 1\n    hp = max_hp\n    items = []\n    def __init__(self, game):\n        EntityBase.__init__(self, game, self.name)",
+        "detail": "src.players.player",
+        "documentation": {}
+    },
+    {
+        "label": "Game",
+        "kind": 6,
+        "importPath": "src.game",
+        "description": "src.game",
+        "peekOfCode": "class Game():\n    def __init__(self):\n        self.display = pygame.display.set_mode(world_size)\n        self.screen = pygame.Surface(world_size).convert()\n        self.clock = pygame.time.Clock()\n        self.player = Player(self)\n        self.dungeon = Dungeon()\n        self.running = True\n        self.game_time = None\n        self.fps = 60",
+        "detail": "src.game",
+        "documentation": {}
+    },
+    {
+        "label": "world_size",
+        "kind": 5,
+        "importPath": "src.game",
+        "description": "src.game",
+        "peekOfCode": "world_size = (1280, 720)\nclass Game():\n    def __init__(self):\n        self.display = pygame.display.set_mode(world_size)\n        self.screen = pygame.Surface(world_size).convert()\n        self.clock = pygame.time.Clock()\n        self.player = Player(self)\n        self.dungeon = Dungeon()\n        self.running = True\n        self.game_time = None",
+        "detail": "src.game",
+        "documentation": {}
+    },
+    {
+        "label": "PlayGround",
+        "kind": 6,
+        "importPath": "src.playground",
+        "description": "src.playground",
+        "peekOfCode": "class PlayGround():\n    def __init__(self):\n        self.walls_map = None\n    def generate_map(self):\n        pass",
+        "detail": "src.playground",
+        "documentation": {}
+    },
+    {
+        "label": "test_map_layout_create",
+        "kind": 2,
+        "importPath": "test.test_map_layout",
+        "description": "test.test_map_layout",
+        "peekOfCode": "def test_map_layout_create():\n    size = 11\n    map_layout = MapLayout(size)\n    layout_for_assert = [[False for _ in range(size)] for _ in range(size)]\n    assert (\n        map_layout.layout == layout_for_assert\n    ), f\"Error in creating Fallse table, result {map_layout.show()}\"\ndef test_map_layout_show():\n    size = 2\n    map_layout = MapLayout(size)",
+        "detail": "test.test_map_layout",
+        "documentation": {}
+    },
+    {
+        "label": "test_map_layout_show",
+        "kind": 2,
+        "importPath": "test.test_map_layout",
+        "description": "test.test_map_layout",
+        "peekOfCode": "def test_map_layout_show():\n    size = 2\n    map_layout = MapLayout(size)\n    table_for_assert = \"[False, False]\\n[False, False]\"\n    assert (\n        map_layout.show() == table_for_assert\n    ), f\"Error in showing method, result {map_layout.show()}\"\ndef test_map_layout_fill():\n    size = 5\n    elem_cuant = 10",
+        "detail": "test.test_map_layout",
+        "documentation": {}
+    },
+    {
+        "label": "test_map_layout_fill",
+        "kind": 2,
+        "importPath": "test.test_map_layout",
+        "description": "test.test_map_layout",
+        "peekOfCode": "def test_map_layout_fill():\n    size = 5\n    elem_cuant = 10\n    map_layout = MapLayout(size)\n    map_layout.fill_layout(elem_cuant)\n    layout_all_false = [[False for _ in range(size)] for _ in range(size)]\n    assert (map_layout.layout != layout_all_false) and (\n        map_layout.elem_count >= elem_cuant\n    ), f\"Error in filling layout, result {map_layout.show()}\"",
+        "detail": "test.test_map_layout",
+        "documentation": {}
+    }
+]

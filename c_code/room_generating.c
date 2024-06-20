@@ -18,13 +18,6 @@ typedef struct SqRoom
 
 // сверху структуры, снизу функции
 
-int *RandomPattern() // твой random в питоне
-{
-    int *pattern = (int *)malloc(sizeof(int));
-    *pattern = rand(); // random value for the pattern
-    return pattern;
-};
-
 Passage **InitializePassage() // просто выделяем память для passage
 {
     Passage **new_passage = (Passage **)malloc(4 * sizeof(Passage *));

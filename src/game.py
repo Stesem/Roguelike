@@ -1,6 +1,6 @@
 import pygame
 from src.players.player import Player
-from src.map.dungeon import Dungeon
+from src.map.dungeon_manager import DungeonManager
 from src.utils import world_size
 
 pygame.init()
@@ -13,6 +13,7 @@ class Game:
         self.screen = pygame.Surface(world_size).convert()
         self.clock = pygame.time.Clock()
         self.player = Player(self)
+        self.dungeon_manager = DungeonManager(self)
         self.running = True
         self.game_time = None
         self.fps = 60
@@ -22,6 +23,7 @@ class Game:
         self.player.update()
 
     def draw_groups(self):
+        self.dungeon_manager.draw_dungeon(self.screen)
         if self.player:
             self.player.draw(self.screen)
 

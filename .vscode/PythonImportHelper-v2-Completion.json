@@ -24,12 +24,84 @@
         "documentation": {}
     },
     {
-        "label": "random",
+        "label": "Dungeon",
+        "importPath": "src.map.dungeon",
+        "description": "src.map.dungeon",
+        "isExtraImport": true,
+        "detail": "src.map.dungeon",
+        "documentation": {}
+    },
+    {
+        "label": "src.utils",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "random",
-        "description": "random",
-        "detail": "random",
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
+        "label": "rooms_quantity",
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "isExtraImport": true,
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
+        "label": "map_size",
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "isExtraImport": true,
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
+        "label": "basic_entity_size",
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "isExtraImport": true,
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
+        "label": "floor_size",
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "isExtraImport": true,
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_mask_rect",
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "isExtraImport": true,
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
+        "label": "basic_entity_size",
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "isExtraImport": true,
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_mask_rect",
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "isExtraImport": true,
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
+        "label": "world_size",
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "isExtraImport": true,
+        "detail": "src.utils",
         "documentation": {}
     },
     {
@@ -75,11 +147,12 @@
         "documentation": {}
     },
     {
-        "label": "EntityBase",
-        "importPath": "src.players.entity_base",
-        "description": "src.players.entity_base",
+        "label": "os",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "src.players.entity_base",
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
         "documentation": {}
     },
     {
@@ -91,27 +164,27 @@
         "documentation": {}
     },
     {
-        "label": "basic_entity_size",
-        "importPath": "src.utils",
-        "description": "src.utils",
+        "label": "EntityBase",
+        "importPath": "src.players.entity_base",
+        "description": "src.players.entity_base",
         "isExtraImport": true,
-        "detail": "src.utils",
+        "detail": "src.players.entity_base",
         "documentation": {}
     },
     {
-        "label": "get_mask_rect",
-        "importPath": "src.utils",
-        "description": "src.utils",
+        "label": "load_sprites_for_animation",
+        "importPath": "src.players.animation",
+        "description": "src.players.animation",
         "isExtraImport": true,
-        "detail": "src.utils",
+        "detail": "src.players.animation",
         "documentation": {}
     },
     {
-        "label": "world_size",
-        "importPath": "src.utils",
-        "description": "src.utils",
+        "label": "AnimationHandler",
+        "importPath": "src.players.animation",
+        "description": "src.players.animation",
         "isExtraImport": true,
-        "detail": "src.utils",
+        "detail": "src.players.animation",
         "documentation": {}
     },
     {
@@ -131,11 +204,11 @@
         "documentation": {}
     },
     {
-        "label": "Dungeon",
-        "importPath": "src.map.dungeon",
-        "description": "src.map.dungeon",
+        "label": "DungeonManager",
+        "importPath": "src.map.dungeon_manager",
+        "description": "src.map.dungeon_manager",
         "isExtraImport": true,
-        "detail": "src.map.dungeon",
+        "detail": "src.map.dungeon_manager",
         "documentation": {}
     },
     {
@@ -160,8 +233,17 @@
         "kind": 6,
         "importPath": "src.map.dungeon",
         "description": "src.map.dungeon",
-        "peekOfCode": "class Dungeon:\n    def __init__(self, map_pattern_size):\n        self.map_layout = MapLayout(map_pattern_size)\n        self.map = [\n            [None for _ in range(map_pattern_size)] for _ in range(map_pattern_size)\n        ]\n    def _check_neighbors(self, row_index, colomn_index, current_room):\n        neighbor_directions = {\n            \"right\": (0, 1),\n            \"left\": (0, -1),",
+        "peekOfCode": "class Dungeon:\n    def __init__(self, map_pattern_size, room_quantity):\n        self.map_layout = MapLayout(map_pattern_size, room_quantity)\n        self.map = [\n            [None for _ in range(map_pattern_size)] for _ in range(map_pattern_size)\n        ]\n        self.start_position = self.map_layout.start_position\n        self.generate_map()\n    def _check_neighbors(self, row_index, colomn_index, current_room):\n        neighbor_directions = {",
         "detail": "src.map.dungeon",
+        "documentation": {}
+    },
+    {
+        "label": "DungeonManager",
+        "kind": 6,
+        "importPath": "src.map.dungeon_manager",
+        "description": "src.map.dungeon_manager",
+        "peekOfCode": "class DungeonManager:\n    def __init__(self, game):\n        self.game = game\n        self.dungeon = None\n        self.position_x, self.position_y = None, None\n        self.current_room = None\n        self.next_room = None\n        self.switch_room = None\n        self.create_dungeon_manager()\n    def create_dungeon_manager(self):",
+        "detail": "src.map.dungeon_manager",
         "documentation": {}
     },
     {
@@ -169,7 +251,7 @@
         "kind": 6,
         "importPath": "src.map.map_layout",
         "description": "src.map.map_layout",
-        "peekOfCode": "class MapLayout:\n    def __init__(self, size):\n        self.size = size\n        self.layout = [[False for _ in range(self.size)] for _ in range(self.size)]\n        self.start_position = self.size // 2\n        self.elem_count = 0\n    def __fill_layout_recursive(self, row_index, column_index, elem_quantity):\n        if (self.elem_count == elem_quantity) or self.layout[row_index][column_index]:\n            return\n        if (row_index > (self.size - 1)) or (row_index < 0):",
+        "peekOfCode": "class MapLayout:\n    def __init__(self, size, elem_quantity):\n        self.size = size  # Таблица квадратная, один параметр размера\n        self.layout = [[False for _ in range(self.size)] for _ in range(self.size)]\n        self.start_position = self.size // 2\n        self.elem_count = 0\n        self.fill_layout(elem_quantity)\n    def __fill_layout_recursive(self, row_index, column_index, elem_quantity):\n        if (self.elem_count == elem_quantity) or self.layout[row_index][column_index]:\n            return",
         "detail": "src.map.map_layout",
         "documentation": {}
     },
@@ -178,7 +260,7 @@
         "kind": 6,
         "importPath": "src.map.room",
         "description": "src.map.room",
-        "peekOfCode": "class Passage:\n    def __init__(self, from_room, to_room, image):\n        self.image = image\n        self.from_room = from_room\n        self.to_room = to_room\nclass Room:\n    def __init__(self):\n        self.passages = {\n            \"right\": Passage(),\n            \"left\": Passage(),",
+        "peekOfCode": "class Passage:\n    def __init__(self, from_room=None, to_room=None, passage_info=None):\n        self.passage_info = passage_info\n        if passage_info:\n            image = pygame.image.load(self.passage_info[\"image\"]).convert_alpha()\n            self.sprite = create_sprite(image, passage_info)\n        else:\n            self.sprite = None\n        self.from_room = from_room\n        self.to_room = to_room",
         "detail": "src.map.room",
         "documentation": {}
     },
@@ -187,7 +269,7 @@
         "kind": 6,
         "importPath": "src.map.room",
         "description": "src.map.room",
-        "peekOfCode": "class Room:\n    def __init__(self):\n        self.passages = {\n            \"right\": Passage(),\n            \"left\": Passage(),\n            \"up\": Passage(),\n            \"down\": Passage(),\n        }\n        self.load_from_json()\n    def load_from_json(self):",
+        "peekOfCode": "class Room:\n    def __init__(self):\n        self.passages_on_direction = {\n            \"right\": Passage(),\n            \"left\": Passage(),\n            \"up\": Passage(),\n            \"down\": Passage(),\n        }\n        self.load_from_json()\n        self.passages = Group()",
         "detail": "src.map.room",
         "documentation": {}
     },
@@ -205,8 +287,26 @@
         "kind": 2,
         "importPath": "src.map.room",
         "description": "src.map.room",
-        "peekOfCode": "def create_sprites_group(sprites_info):\n    group = Group()\n    for sprite_info in sprites_info:\n        image = pygame.image.load(sprite_info[\"image\"]).convert_alpha()\n        sprite = create_sprite(image, sprite_info)\n        group.add(sprite)\n    return group\nclass Passage:\n    def __init__(self, from_room, to_room, image):\n        self.image = image",
+        "peekOfCode": "def create_sprites_group(sprites_info):\n    group = Group()\n    for sprite_info in sprites_info:\n        image = pygame.image.load(sprite_info[\"image\"]).convert_alpha()\n        image = pygame.transform.scale(\n            image, (sprite_info[\"width\"], sprite_info[\"height\"])\n        )\n        sprite = create_sprite(image, sprite_info)\n        group.add(sprite)\n    return group",
         "detail": "src.map.room",
+        "documentation": {}
+    },
+    {
+        "label": "AnimationHandler",
+        "kind": 6,
+        "importPath": "src.players.animation",
+        "description": "src.players.animation",
+        "peekOfCode": "class AnimationHandler:\n    def __init__(self, entity, death_frames=4, animation_speed=25):\n        self.entity = entity\n        self.direction = \"right\"\n        self.frame_index = 0\n        self.hurt_time_marker = 0\n        self.total_death_frames = death_frames\n        self.animation_speed = animation_speed\n    def is_moving(self):\n        return bool(self.entity.velocity[0]) or bool(self.entity.velocity[1])",
+        "detail": "src.players.animation",
+        "documentation": {}
+    },
+    {
+        "label": "load_sprites_for_animation",
+        "kind": 2,
+        "importPath": "src.players.animation",
+        "description": "src.players.animation",
+        "peekOfCode": "def load_sprites_for_animation(path, sprite_size=utils.basic_entity_size):\n    animation_data = {\"IDLE\": [], \"WALK\": [], \"HURT\": [], \"DEAD\": []}\n    animation_states = os.listdir(path)\n    for state in animation_states:\n        sub_states = os.listdir(path + state)\n        for sub_state in sub_states:\n            key = state.upper()\n            animation_image = pygame.image.load(\n                path + state + \"/\" + sub_state\n            ).convert_alpha()",
+        "detail": "src.players.animation",
         "documentation": {}
     },
     {
@@ -223,7 +323,7 @@
         "kind": 6,
         "importPath": "src.players.entity_base",
         "description": "src.players.entity_base",
-        "peekOfCode": "class EntityBase:\n    def __init__(self, game, name):\n        self.game = game\n        self.name = name\n        self.path = f\"assets/characters/{self.name}\"\n        self.image = pygame.transform.scale(\n            pygame.image.load(f\"{self.path}/idle/idle0.png\"), basic_entity_size\n        ).convert_alpha()\n        \"\"\" self.hitbox = get_mask_rect(self.image, self.rect.topleft)  # А надо ли? \"\"\"\n        self.rect = self.image.get_rect()",
+        "peekOfCode": "class EntityBase:\n    def __init__(self, game, name):\n        self.game = game\n        self.name = name\n        self.path = f\"assets/characters/{self.name}\"\n        self.animation_database = load_sprites_for_animation(f\"{self.path}/\")\n        self.image = pygame.transform.scale(\n            pygame.image.load(f\"{self.path}/idle/idle0.png\"), basic_entity_size\n        ).convert_alpha()\n        self.rect = self.image.get_rect()",
         "detail": "src.players.entity_base",
         "documentation": {}
     },
@@ -232,7 +332,7 @@
         "kind": 6,
         "importPath": "src.players.player",
         "description": "src.players.player",
-        "peekOfCode": "class Player(EntityBase):\n    name = \"player\"\n    speed = 10\n    max_hp = 100\n    shield = 1\n    strength = 1\n    hp = max_hp\n    items = []\n    def __init__(self, game):\n        EntityBase.__init__(self, game, self.name)",
+        "peekOfCode": "class Player(EntityBase):\n    name = \"player\"\n    speed = 10\n    max_hp = 100\n    hp = max_hp\n    def __init__(self, game):\n        super().__init__(game, self.name)\n        self.weapon = None\n        self.rect = self.image.get_rect(center=(300, 300))\n        self.attacking = False",
         "detail": "src.players.player",
         "documentation": {}
     },
@@ -241,7 +341,7 @@
         "kind": 6,
         "importPath": "src.game",
         "description": "src.game",
-        "peekOfCode": "class Game:\n    def __init__(self):\n        self.display = pygame.display.set_mode(world_size)\n        self.screen = pygame.Surface(world_size).convert()\n        self.clock = pygame.time.Clock()\n        self.player = Player(self)\n        self.running = True\n        self.game_time = None\n        self.fps = 60\n        self.screen_position = (0, 0)",
+        "peekOfCode": "class Game:\n    def __init__(self):\n        self.display = pygame.display.set_mode(world_size)\n        self.screen = pygame.Surface(world_size).convert()\n        self.clock = pygame.time.Clock()\n        self.player = Player(self)\n        self.dungeon_manager = DungeonManager(self)\n        self.running = True\n        self.game_time = None\n        self.fps = 60",
         "detail": "src.game",
         "documentation": {}
     },
@@ -259,7 +359,16 @@
         "kind": 2,
         "importPath": "src.utils",
         "description": "src.utils",
-        "peekOfCode": "def get_mask_rect(surf, top=0, left=0):\n    \"\"\"Returns minimal bounding rectangle of an image\"\"\"\n    surf_mask = pygame.mask.from_surface(surf)\n    rect_list = surf_mask.get_bounding_rects()\n    if rect_list:\n        surf_mask_rect = rect_list[0].unionall(rect_list)\n        surf_mask_rect.move_ip(top, left)\n        return surf_mask_rect",
+        "peekOfCode": "def get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:\n        surface_mask_rect = rect_list[0].unionall(rect_list)\n        surface_mask_rect.move_ip(topleft)\n        return surface_mask_rect",
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
+        "label": "floor_size",
+        "kind": 5,
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "peekOfCode": "floor_size = (936, 500)\nbasic_entity_size = (64, 64)\nworld_size = (1280, 800)\nrooms_quantity = 10\nmap_size = 9\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:\n        surface_mask_rect = rect_list[0].unionall(rect_list)",
         "detail": "src.utils",
         "documentation": {}
     },
@@ -268,7 +377,7 @@
         "kind": 5,
         "importPath": "src.utils",
         "description": "src.utils",
-        "peekOfCode": "basic_entity_size = (64, 64)\nworld_size = (1280, 720)\ndef get_mask_rect(surf, top=0, left=0):\n    \"\"\"Returns minimal bounding rectangle of an image\"\"\"\n    surf_mask = pygame.mask.from_surface(surf)\n    rect_list = surf_mask.get_bounding_rects()\n    if rect_list:\n        surf_mask_rect = rect_list[0].unionall(rect_list)\n        surf_mask_rect.move_ip(top, left)\n        return surf_mask_rect",
+        "peekOfCode": "basic_entity_size = (64, 64)\nworld_size = (1280, 800)\nrooms_quantity = 10\nmap_size = 9\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:\n        surface_mask_rect = rect_list[0].unionall(rect_list)\n        surface_mask_rect.move_ip(topleft)",
         "detail": "src.utils",
         "documentation": {}
     },
@@ -277,7 +386,25 @@
         "kind": 5,
         "importPath": "src.utils",
         "description": "src.utils",
-        "peekOfCode": "world_size = (1280, 720)\ndef get_mask_rect(surf, top=0, left=0):\n    \"\"\"Returns minimal bounding rectangle of an image\"\"\"\n    surf_mask = pygame.mask.from_surface(surf)\n    rect_list = surf_mask.get_bounding_rects()\n    if rect_list:\n        surf_mask_rect = rect_list[0].unionall(rect_list)\n        surf_mask_rect.move_ip(top, left)\n        return surf_mask_rect",
+        "peekOfCode": "world_size = (1280, 800)\nrooms_quantity = 10\nmap_size = 9\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:\n        surface_mask_rect = rect_list[0].unionall(rect_list)\n        surface_mask_rect.move_ip(topleft)\n        return surface_mask_rect",
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
+        "label": "rooms_quantity",
+        "kind": 5,
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "peekOfCode": "rooms_quantity = 10\nmap_size = 9\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:\n        surface_mask_rect = rect_list[0].unionall(rect_list)\n        surface_mask_rect.move_ip(topleft)\n        return surface_mask_rect",
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
+        "label": "map_size",
+        "kind": 5,
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "peekOfCode": "map_size = 9\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:\n        surface_mask_rect = rect_list[0].unionall(rect_list)\n        surface_mask_rect.move_ip(topleft)\n        return surface_mask_rect",
         "detail": "src.utils",
         "documentation": {}
     },

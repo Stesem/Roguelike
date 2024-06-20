@@ -2,11 +2,12 @@ from random import shuffle, randint
 
 
 class MapLayout:
-    def __init__(self, size):
-        self.size = size
+    def __init__(self, size, elem_quantity):
+        self.size = size  # Таблица квадратная, один параметр размера
         self.layout = [[False for _ in range(self.size)] for _ in range(self.size)]
         self.start_position = self.size // 2
         self.elem_count = 0
+        self.fill_layout(elem_quantity)
 
     def __fill_layout_recursive(self, row_index, column_index, elem_quantity):
         if (self.elem_count == elem_quantity) or self.layout[row_index][column_index]:

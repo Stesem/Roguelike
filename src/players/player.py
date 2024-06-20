@@ -9,18 +9,15 @@ class Player(EntityBase):
     name = "player"
     speed = 10
     max_hp = 100
-    shield = 1
-    strength = 1
     hp = max_hp
-    items = []
 
     def __init__(self, game):
-        EntityBase.__init__(self, game, self.name)
+        super().__init__(game, self.name)
         self.weapon = None
-        self.rect = self.image.get_rect(center=(640, 360))
+        self.rect = self.image.get_rect(center=(300, 300))
         self.attacking = False
         self.interaction = True
-        self.attack_cooldown = 350  # ms
+        self.attack_cooldown = 350
         self.room = None
         self.death_counter = 1
         self.falling = False
@@ -50,17 +47,47 @@ class Player(EntityBase):
 
         rms_velocity = sqrt(pow(vel_list[0], 2) + pow(vel_list[1], 2))
 
-        # balancing velocity moving diagonal
         if 0 not in vel_list:
+
             velocity = rms_velocity / (abs(vel_list[0]) + abs(vel_list[1]))
             vel_list_fixed = [elem * velocity for elem in vel_list]
             self.set_velocity(vel_list_fixed)
         else:
             self.set_velocity(vel_list)
 
+    def wall_and_passage_collision(self):
+        position_after_moving = self.hitbox.move(self.velocity)
+        collide_points = (
+            position_after_moving.midbottom,
+            position_after_moving.bottomleft,
+            position_after_moving.bottomright,
+        )
+        current_room = self.game.dungeon_manager.current_room
+        collided_with_wall = False
+        for wall in current_room.walls:
+            if any(wall.rect.collidepoint(point) for point in collide_points):
+                self.velocity = [0, 0]
+                collided_with_wall = True
+                break
+
+        if not collided_with_wall:
+            for passage in current_room.passages:
+                if any(
+                    passage.rect.collidepoint(check_point)
+                    for check_point in collide_points
+                ):
+                    if passage.rect.collidepoint(collide_points[1]):
+                        self.game.dungeon_manager.go_to_next_room(passage)
+                    break
+
     def update(self):
+        if self.death_counter == 0:
+            return
+        self.entity_animation.update()
+        self.wall_and_passage_collision()
         if self.can_move:
             self.rect.move_ip(self.velocity)
+            self.hitbox.move_ip(self.velocity)
 
     def draw(self, surface):
         surface.blit(self.image, self.rect)

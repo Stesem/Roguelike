@@ -1,6 +1,7 @@
 import pygame
 from src.players.entity_base import EntityBase
 from math import sqrt
+from src.utils import get_mask_rect
 
 pygame.init()
 
@@ -14,7 +15,9 @@ class Player(EntityBase):
     def __init__(self, game):
         super().__init__(game, self.name)
         self.weapon = None
-        self.rect = self.image.get_rect(center=(300, 300))
+        self.rect = self.image.get_rect(center=(500, 250))
+        self.hitbox = get_mask_rect(self.image, self.rect.topleft)
+        self.hitbox.midbottom = self.rect.midbottom
         self.attacking = False
         self.interaction = True
         self.attack_cooldown = 350
@@ -62,15 +65,12 @@ class Player(EntityBase):
             position_after_moving.bottomleft,
             position_after_moving.bottomright,
         )
-        current_room = self.game.dungeon_manager.current_room
-        collided_with_wall = False
-        for wall in current_room.walls:
+        for wall in self.game.dungeon_manager.current_room.walls:
             if any(wall.rect.collidepoint(point) for point in collide_points):
-                self.velocity = [0, 0]
-                collided_with_wall = True
-                break
+                self.set_velocity([0, 0])
+                return
 
-        if not collided_with_wall:
+        """ if not collided_with_wall:
             for passage in current_room.passages:
                 if any(
                     passage.rect.collidepoint(check_point)
@@ -78,7 +78,7 @@ class Player(EntityBase):
                 ):
                     if passage.rect.collidepoint(collide_points[1]):
                         self.game.dungeon_manager.go_to_next_room(passage)
-                    break
+                    break """
 
     def update(self):
         if self.death_counter == 0:

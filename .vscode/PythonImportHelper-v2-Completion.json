@@ -97,6 +97,14 @@
         "documentation": {}
     },
     {
+        "label": "get_mask_rect",
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "isExtraImport": true,
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
         "label": "world_size",
         "importPath": "src.utils",
         "description": "src.utils",
@@ -332,7 +340,7 @@
         "kind": 6,
         "importPath": "src.players.player",
         "description": "src.players.player",
-        "peekOfCode": "class Player(EntityBase):\n    name = \"player\"\n    speed = 10\n    max_hp = 100\n    hp = max_hp\n    def __init__(self, game):\n        super().__init__(game, self.name)\n        self.weapon = None\n        self.rect = self.image.get_rect(center=(300, 300))\n        self.attacking = False",
+        "peekOfCode": "class Player(EntityBase):\n    name = \"player\"\n    speed = 10\n    max_hp = 100\n    hp = max_hp\n    def __init__(self, game):\n        super().__init__(game, self.name)\n        self.weapon = None\n        self.rect = self.image.get_rect(center=(500, 250))\n        self.hitbox = get_mask_rect(self.image, self.rect.topleft)",
         "detail": "src.players.player",
         "documentation": {}
     },

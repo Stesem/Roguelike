@@ -17,8 +17,6 @@ class DungeonManager:
         self.position_x = self.dungeon.start_position
         self.position_y = self.dungeon.start_position
         self.current_room = self.dungeon.map[self.position_y][self.position_x]
-        self.switch_room = False
-        self.next_room = None
 
     def set_current_room(self, room):
         self.current_room = room
@@ -36,16 +34,28 @@ class DungeonManager:
             self.game.player.rect.move_ip(
                 -(floor_size[0] - basic_entity_size[0] // 4), 0
             )
+            self.game.player.hitbox.move_ip(
+                -(floor_size[0] - basic_entity_size[0] // 4), 0
+            )
         if direction_in_prev_room == "left":
             self.game.player.rect.move_ip(
+                (floor_size[0] - basic_entity_size[0] // 4), 0
+            )
+            self.game.player.hitbox.move_ip(
                 (floor_size[0] - basic_entity_size[0] // 4), 0
             )
         if direction_in_prev_room == "up":
             self.game.player.rect.move_ip(
                 0, (floor_size[1] - basic_entity_size[1] // 4)
             )
+            self.game.player.hitbox.move_ip(
+                0, (floor_size[1] - basic_entity_size[1] // 4)
+            )
         if direction_in_prev_room == "up":
             self.game.player.rect.move_ip(
+                0, -(floor_size[1] - basic_entity_size[1] // 4)
+            )
+            self.game.player.hitbox.move_ip(
                 0, -(floor_size[1] - basic_entity_size[1] // 4)
             )
 

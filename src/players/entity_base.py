@@ -15,6 +15,7 @@ class EntityBase:
         ).convert_alpha()
         self.rect = self.image.get_rect()
         self.hitbox = get_mask_rect(self.image, self.rect.topleft)
+        self.hitbox.midbottom = self.rect.midbottom
         self.velocity = [0, 0]
         self.hurt = False
         self.dead = False

@@ -3,10 +3,10 @@
     "width": 1000,
     "height": 564,
     "walls": [
-        {"image": "assets/room/wall_horizontal.png", "x": 32, "y": 0, "width": 1000, "height": 32},
-        {"image": "assets/room/wall_horizontal.png", "x": 32, "y": 532, "width": 1000, "height": 32},
+        {"image": "assets/room/wall_horizontal.png", "x": 32, "y": 0, "width": 936, "height": 32},
+        {"image": "assets/room/wall_horizontal.png", "x": 32, "y": 532, "width": 936, "height": 32},
         {"image": "assets/room/wall_left.png", "x": 0, "y": 0, "width": 32, "height": 564},
-        {"image": "assets/room/wall_right.png", "x": 1000, "y": 0, "width": 32, "height": 564}
+        {"image": "assets/room/wall_right.png", "x": 968, "y": 0, "width": 32, "height": 564}
     ],
     "floor": [
         {"image": "assets/room/floor.png", "x": 32, "y": 32, "width": 936, "height": 500}

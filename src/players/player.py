@@ -2,6 +2,8 @@ import pygame
 from src.players.entity_base import EntityBase
 from math import sqrt
 
+pygame.init()
+
 
 class Player(EntityBase):
     name = "player"
@@ -15,6 +17,7 @@ class Player(EntityBase):
     def __init__(self, game):
         EntityBase.__init__(self, game, self.name)
         self.weapon = None
+        self.rect = self.image.get_rect(center=(640, 360))
         self.attacking = False
         self.interaction = True
         self.attack_cooldown = 350  # ms
@@ -57,7 +60,7 @@ class Player(EntityBase):
 
     def update(self):
         if self.can_move:
-            self.rect.move_ip(*self.velocity)
+            self.rect.move_ip(self.velocity)
 
     def draw(self, surface):
         surface.blit(self.image, self.rect)

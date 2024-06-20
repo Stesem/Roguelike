@@ -91,6 +91,30 @@
         "documentation": {}
     },
     {
+        "label": "basic_entity_size",
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "isExtraImport": true,
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_mask_rect",
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "isExtraImport": true,
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
+        "label": "world_size",
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "isExtraImport": true,
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
         "label": "sqrt",
         "importPath": "math",
         "description": "math",
@@ -199,7 +223,7 @@
         "kind": 6,
         "importPath": "src.players.entity_base",
         "description": "src.players.entity_base",
-        "peekOfCode": "class EntityBase():\n    def __init__(self, game, name):\n        self.game = game\n        self.name = name\n        self.path = f'assets/characters/{self.name}'\n        self.image = self.image = pygame.image.load(f'assets/characters/{name}/{name}0.png')\n        self.rect = self.image.get_rect()\n        self.velocity = [0, 0]\n        self.direction = 'right'\n        self.can_move = True",
+        "peekOfCode": "class EntityBase:\n    def __init__(self, game, name):\n        self.game = game\n        self.name = name\n        self.path = f\"assets/characters/{self.name}\"\n        self.image = pygame.transform.scale(\n            pygame.image.load(f\"{self.path}/idle/idle0.png\"), basic_entity_size\n        ).convert_alpha()\n        \"\"\" self.hitbox = get_mask_rect(self.image, self.rect.topleft)  # А надо ли? \"\"\"\n        self.rect = self.image.get_rect()",
         "detail": "src.players.entity_base",
         "documentation": {}
     },
@@ -217,16 +241,7 @@
         "kind": 6,
         "importPath": "src.game",
         "description": "src.game",
-        "peekOfCode": "class Game():\n    def __init__(self):\n        self.display = pygame.display.set_mode(world_size)\n        self.screen = pygame.Surface(world_size).convert()\n        self.clock = pygame.time.Clock()\n        self.player = Player(self)\n        self.dungeon = Dungeon()\n        self.running = True\n        self.game_time = None\n        self.fps = 60",
-        "detail": "src.game",
-        "documentation": {}
-    },
-    {
-        "label": "world_size",
-        "kind": 5,
-        "importPath": "src.game",
-        "description": "src.game",
-        "peekOfCode": "world_size = (1280, 720)\nclass Game():\n    def __init__(self):\n        self.display = pygame.display.set_mode(world_size)\n        self.screen = pygame.Surface(world_size).convert()\n        self.clock = pygame.time.Clock()\n        self.player = Player(self)\n        self.dungeon = Dungeon()\n        self.running = True\n        self.game_time = None",
+        "peekOfCode": "class Game:\n    def __init__(self):\n        self.display = pygame.display.set_mode(world_size)\n        self.screen = pygame.Surface(world_size).convert()\n        self.clock = pygame.time.Clock()\n        self.player = Player(self)\n        self.running = True\n        self.game_time = None\n        self.fps = 60\n        self.screen_position = (0, 0)",
         "detail": "src.game",
         "documentation": {}
     },
@@ -237,6 +252,33 @@
         "description": "src.playground",
         "peekOfCode": "class PlayGround():\n    def __init__(self):\n        self.walls_map = None\n    def generate_map(self):\n        pass",
         "detail": "src.playground",
+        "documentation": {}
+    },
+    {
+        "label": "get_mask_rect",
+        "kind": 2,
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "peekOfCode": "def get_mask_rect(surf, top=0, left=0):\n    \"\"\"Returns minimal bounding rectangle of an image\"\"\"\n    surf_mask = pygame.mask.from_surface(surf)\n    rect_list = surf_mask.get_bounding_rects()\n    if rect_list:\n        surf_mask_rect = rect_list[0].unionall(rect_list)\n        surf_mask_rect.move_ip(top, left)\n        return surf_mask_rect",
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
+        "label": "basic_entity_size",
+        "kind": 5,
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "peekOfCode": "basic_entity_size = (64, 64)\nworld_size = (1280, 720)\ndef get_mask_rect(surf, top=0, left=0):\n    \"\"\"Returns minimal bounding rectangle of an image\"\"\"\n    surf_mask = pygame.mask.from_surface(surf)\n    rect_list = surf_mask.get_bounding_rects()\n    if rect_list:\n        surf_mask_rect = rect_list[0].unionall(rect_list)\n        surf_mask_rect.move_ip(top, left)\n        return surf_mask_rect",
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
+        "label": "world_size",
+        "kind": 5,
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "peekOfCode": "world_size = (1280, 720)\ndef get_mask_rect(surf, top=0, left=0):\n    \"\"\"Returns minimal bounding rectangle of an image\"\"\"\n    surf_mask = pygame.mask.from_surface(surf)\n    rect_list = surf_mask.get_bounding_rects()\n    if rect_list:\n        surf_mask_rect = rect_list[0].unionall(rect_list)\n        surf_mask_rect.move_ip(top, left)\n        return surf_mask_rect",
+        "detail": "src.utils",
         "documentation": {}
     },
     {

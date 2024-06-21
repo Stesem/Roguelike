@@ -7,7 +7,7 @@ def load_sprites_for_animation(path, sprite_size=utils.basic_entity_size):
     animation_data = {"IDLE": [], "WALK": [], "HURT": [], "DEAD": []}
     animation_states = os.listdir(path)
     for state in animation_states:
-        sub_states = os.listdir(path + state)
+        sub_states = os.listdir({path}/{state})
         for sub_state in sub_states:
             key = state.upper()
             animation_image = pygame.image.load(

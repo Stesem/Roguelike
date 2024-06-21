@@ -50,6 +50,10 @@ class Dungeon:
         ):
             return
         self.map[row_index][column_index] = Room()
+        if row_index == self.start_position and column_index == self.start_position:
+            self.map[row_index][column_index].type = "start"
+        else:
+            self.map[row_index][column_index].type = "normal"
         self._check_neighbors(row_index, column_index)
         if row_index - 1 >= 0:
             self._generate_recursive(row_index - 1, column_index)

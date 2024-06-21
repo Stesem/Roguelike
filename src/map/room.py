@@ -28,7 +28,6 @@ class Room:
         self.passages = Group()
         self.tipe = None
         self.enemy_list = []
-        self.items_list = []
 
     def load_from_json(self):
         with open("src/map/room_pattern.json", "r") as file:

@@ -23,30 +23,12 @@ class EntityBase:
         self.entity_animation = AnimationHandler(self)
         self.time = 0
         self.can_get_hurt = True
-        self.hurt_time_marker = 0
 
     def set_velocity(self, new_velocity):
         self.velocity = new_velocity
 
-    def slowing_by_hurt(self):
-        base_speed = self.speed
-        hurted_speed = base_speed - 70
-        if self.hurt:
-            self.speed = hurted_speed
-        else:
-            self.speed = base_speed
-
     def moving(self):
         return self.velocity[0] != 0 or self.velocity[1] != 0
-
-    def detecting_hurt(self):
-        if self.hurt == True:
-            self.can_get_hurt = False
-            invincibility_time = 300
-            if pygame.time.get_ticks() - self.hurt_time_marker > invincibility_time:
-                self.hurt_time_marker = pygame.time.get_ticks()
-                self.hurt = False
-                self.can_get_hurt = True
 
     def detect_death(self):
         if self.hp <= 0 and not self.dead:

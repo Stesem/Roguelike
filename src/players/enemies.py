@@ -2,6 +2,7 @@ import pygame
 from src.players.entity_base import EntityBase
 from random import randint
 from src.suppor import floor_size, world_size, check_time_passed
+from src.items.bullet import CultistBullet
 
 
 class Enemy(EntityBase):
@@ -135,3 +136,32 @@ class Cultist(Enemy):
 
     def __init__(self, game, max_hp, room):
         super().__init__(game, self.name, max_hp, room)
+        self.attack_cd = 700
+
+    def cast_spell(self):
+        if (
+            not sum(self.velocity)
+            and not self.game.player.dead
+            and not self.dead
+            and check_time_passed(self.attack_timer, self.attack_cd)
+        ):
+            self.attack_timer = pygame.time.get_ticks()
+            self.game.bullet_manager.add_bullet(
+                CultistBullet(
+                    self.game,
+                    self,
+                    self.hitbox.center[0],
+                    self.hitbox.center[1],
+                    self.game.player.hitbox.center,
+                    self.room,
+                )
+            )
+
+    def move(self):
+        if not self.dead and self.hp > 0:
+            self.stay_away_from_player(radius=350)
+
+    def update(self):
+        self.move()
+        self.basic_update()
+        self.cast_spell()

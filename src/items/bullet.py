@@ -3,14 +3,11 @@ from src.suppor import white, purple
 
 
 class CultistBullet:
-    speed = 7
-    size = 10
-    radius = 5
-
     def __init__(self, game, master, x, y, target, room):
         self.game = game
         self.master = master
         self.damage = master.damage
+        self.target = target
         self.rect = None
         self.image = None
         self.position = (x, y)
@@ -23,16 +20,18 @@ class CultistBullet:
 
     def create_image(self):
         self.image = pygame.Surface([self.size, self.size])
+        self.image.fill(white)
+        self.rect = self.image.get_rect()
 
-    def define_direction(self, target):
+    def define_direction(self):
         direct = pygame.math.Vector2(
-            target[0] - self.position[0], target[1] - self.position[1]
+            self.target[0] - self.position[0], self.target[1] - self.position[1]
         )
-        if direct.length_squared > 0:
-            self.direction = direct.normalize
+        if direct.length_squared() > 0:
+            self.direction = direct.normalize()
 
     def update_position(self):
-        if self.room == self.game.dungeon_manager.curren_room:
+        if self.room == self.game.dungeon_manager.current_room:
             self.position = (
                 self.position[0] + self.direction[0] * self.speed,
                 self.position[1] + self.direction[1] * self.speed,
@@ -47,12 +46,12 @@ class CultistBullet:
 
     def hit_player(self, player):
         if self.rect.colliderect(player.hitbox):
-            if player.shild == 0:
+            if player.shield == 0:
                 player.hp -= 1
                 player.hurt = True
                 player.entity_animation.hurt_timer_mark = pygame.time.get_ticks()
             else:
-                player.shild -= 1
+                player.shield -= 1
 
     def wall_collision(self):
         collide_points = (
@@ -60,16 +59,16 @@ class CultistBullet:
             self.rect.midbottom,
             self.rect.bottomright,
         )
-        for wall in self.game.dungeon_manager.current_map.walls:
+        for wall in self.game.dungeon_manager.current_room.walls:
             if any(
-                wall.hitbox.collidepoint(check_point) for check_point in collide_points
+                wall.rect.collidepoint(check_point) for check_point in collide_points
             ):
                 self.kill()
                 break
 
     def update(self):
         self.update_position()
-        self.hit_player()
+        self.hit_player(self.game.player)
         self.wall_collision()
 
     def draw(self, screen):
@@ -85,3 +84,20 @@ class CultistBullet:
             (self.rect.x + self.radius / 2, self.rect.y + self.radius / 2),
             self.radius - 1,
         )
+
+
+class BulletManager:
+    def __init__(self, game):
+        self.game = game
+        self.bullet_list = []
+
+    def add_bullet(self, bullet):
+        self.bullet_list.append(bullet)
+
+    def update(self):
+        for bullet in self.bullet_list:
+            bullet.update()
+
+    def draw(self, screen):
+        for bullet in self.bullet_list:
+            bullet.draw(screen)

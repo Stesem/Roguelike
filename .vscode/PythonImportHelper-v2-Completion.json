@@ -9,6 +9,15 @@
         "documentation": {}
     },
     {
+        "label": "src.suppor",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "detail": "src.suppor",
+        "documentation": {}
+    },
+    {
         "label": "white",
         "importPath": "src.suppor",
         "description": "src.suppor",
@@ -74,14 +83,6 @@
     },
     {
         "label": "create_sprites_group",
-        "importPath": "src.suppor",
-        "description": "src.suppor",
-        "isExtraImport": true,
-        "detail": "src.suppor",
-        "documentation": {}
-    },
-    {
-        "label": "basic_entity_size",
         "importPath": "src.suppor",
         "description": "src.suppor",
         "isExtraImport": true,
@@ -275,6 +276,22 @@
         "documentation": {}
     },
     {
+        "label": "CultistBullet",
+        "importPath": "src.items.bullet",
+        "description": "src.items.bullet",
+        "isExtraImport": true,
+        "detail": "src.items.bullet",
+        "documentation": {}
+    },
+    {
+        "label": "BulletManager",
+        "importPath": "src.items.bullet",
+        "description": "src.items.bullet",
+        "isExtraImport": true,
+        "detail": "src.items.bullet",
+        "documentation": {}
+    },
+    {
         "label": "Abomination",
         "importPath": "src.players.enemies",
         "description": "src.players.enemies",
@@ -368,7 +385,16 @@
         "kind": 6,
         "importPath": "src.items.bullet",
         "description": "src.items.bullet",
-        "peekOfCode": "class CultistBullet:\n    speed = 7\n    size = 10\n    radius = 5\n    def __init__(self, game, master, x, y, target, room):\n        self.game = game\n        self.master = master\n        self.damage = master.damage\n        self.rect = None\n        self.image = None",
+        "peekOfCode": "class CultistBullet:\n    def __init__(self, game, master, x, y, target, room):\n        self.game = game\n        self.master = master\n        self.damage = master.damage\n        self.target = target\n        self.rect = None\n        self.image = None\n        self.position = (x, y)\n        self.create_image()",
+        "detail": "src.items.bullet",
+        "documentation": {}
+    },
+    {
+        "label": "BulletManager",
+        "kind": 6,
+        "importPath": "src.items.bullet",
+        "description": "src.items.bullet",
+        "peekOfCode": "class BulletManager:\n    def __init__(self, game):\n        self.game = game\n        self.bullet_list = []\n    def add_bullet(self, bullet):\n        self.bullet_list.append(bullet)\n    def update(self):\n        for bullet in self.bullet_list:\n            bullet.update()\n    def draw(self, screen):",
         "detail": "src.items.bullet",
         "documentation": {}
     },
@@ -422,7 +448,7 @@
         "kind": 6,
         "importPath": "src.players.animation",
         "description": "src.players.animation",
-        "peekOfCode": "class AnimationHandler:\n    def __init__(self, entity, death_frames=4, animation_speed=30):\n        self.entity = entity\n        self.direction = \"right\"\n        self.frame_index = 0\n        self.total_death_frames = death_frames\n        self.animation_speed = animation_speed\n    def is_moving(self):\n        return bool(self.entity.velocity[0]) or bool(self.entity.velocity[1])\n    def determine_direction(self):",
+        "peekOfCode": "class AnimationHandler:\n    def __init__(self, entity, death_frames=4, animation_speed=25):\n        self.entity = entity\n        self.direction = \"right\"\n        self.frame_index = 0\n        self.hurt_time_marker = 0\n        self.total_death_frames = death_frames\n        self.animation_speed = animation_speed\n    def is_moving(self):\n        return bool(self.entity.velocity[0]) or bool(self.entity.velocity[1])",
         "detail": "src.players.animation",
         "documentation": {}
     },
@@ -431,7 +457,7 @@
         "kind": 2,
         "importPath": "src.players.animation",
         "description": "src.players.animation",
-        "peekOfCode": "def load_sprites_for_animation(path, sprite_size=basic_entity_size):\n    animation_data = {\"IDLE\": [], \"WALK\": [], \"HURT\": [], \"DEAD\": []}\n    animation_states = os.listdir(path)\n    for state in animation_states:\n        sub_states = os.listdir(path + state)\n        for sub_state in sub_states:\n            key = state.upper()\n            animation_image = pygame.image.load(\n                path + state + \"/\" + sub_state\n            ).convert_alpha()",
+        "peekOfCode": "def load_sprites_for_animation(path, sprite_size=utils.basic_entity_size):\n    animation_data = {\"IDLE\": [], \"WALK\": [], \"HURT\": [], \"DEAD\": []}\n    animation_states = os.listdir(path)\n    for state in animation_states:\n        sub_states = os.listdir(path + state)\n        for sub_state in sub_states:\n            key = state.upper()\n            animation_image = pygame.image.load(\n                path + state + \"/\" + sub_state\n            ).convert_alpha()",
         "detail": "src.players.animation",
         "documentation": {}
     },
@@ -458,7 +484,7 @@
         "kind": 6,
         "importPath": "src.players.enemies",
         "description": "src.players.enemies",
-        "peekOfCode": "class Cultist(Enemy):\n    name = \"cultist\"\n    damage = 20\n    speed = 300\n    def __init__(self, game, max_hp, room):\n        super().__init__(game, self.name, max_hp, room)",
+        "peekOfCode": "class Cultist(Enemy):\n    name = \"cultist\"\n    damage = 20\n    speed = 300\n    def __init__(self, game, max_hp, room):\n        super().__init__(game, self.name, max_hp, room)\n        self.attack_cd = 700\n    def cast_spell(self):\n        if (\n            not sum(self.velocity)",
         "detail": "src.players.enemies",
         "documentation": {}
     },
@@ -485,7 +511,7 @@
         "kind": 6,
         "importPath": "src.players.player",
         "description": "src.players.player",
-        "peekOfCode": "class Player(EntityBase):\n    name = \"player\"\n    speed = 400\n    max_hp = 1\n    hp = max_hp\n    def __init__(self, game):\n        super().__init__(game, self.name)\n        self.weapon = None\n        self.rect = self.image.get_rect(center=(world_size[0] / 2, world_size[1] / 2))\n        self.hitbox = get_mask_rect(self.image, self.rect.topleft)",
+        "peekOfCode": "class Player(EntityBase):\n    name = \"player\"\n    speed = 400\n    max_hp = 600\n    hp = max_hp\n    def __init__(self, game):\n        super().__init__(game, self.name)\n        self.weapon = None\n        self.rect = self.image.get_rect(center=(world_size[0] / 2, world_size[1] / 2))\n        self.hitbox = get_mask_rect(self.image, self.rect.topleft)",
         "detail": "src.players.player",
         "documentation": {}
     },
@@ -494,7 +520,7 @@
         "kind": 6,
         "importPath": "src.game",
         "description": "src.game",
-        "peekOfCode": "class Game:\n    def __init__(self):\n        self.display = pygame.display.set_mode(world_size)\n        self.screen = pygame.Surface(world_size).convert()\n        self.clock = pygame.time.Clock()\n        self.player = Player(self)\n        self.dungeon_manager = DungeonManager(self)\n        self.enemy_manager = EnemyManager(self)\n        self.running = True\n        self.d_time = 0",
+        "peekOfCode": "class Game:\n    def __init__(self):\n        self.display = pygame.display.set_mode(world_size)\n        self.screen = pygame.Surface(world_size).convert()\n        self.clock = pygame.time.Clock()\n        self.player = Player(self)\n        self.dungeon_manager = DungeonManager(self)\n        self.enemy_manager = EnemyManager(self)\n        self.bullet_manager = BulletManager(self)\n        self.running = True",
         "detail": "src.game",
         "documentation": {}
     },

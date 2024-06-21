@@ -11,7 +11,7 @@ class Dungeon:
         self.start_position = self.map_layout.start_position
         self.generate_map()
 
-    def _check_neighbors(self, row_index, column_index):
+    def _check_neighbors(self, row_index, column_index, previous_key): #добавила параметр
         neighbor_directions = {
             "right": (0, 1),
             "left": (0, -1),
@@ -25,6 +25,9 @@ class Dungeon:
             if 0 <= neighbor_row < len(self.map) and 0 <= neighbor_column < len(
                 self.map[0]
             ):
+                ####тут добавила
+                if previous_key == "chest" and not current.key:
+                    curremt.key = "enemies"
                 neighbor = self.map[neighbor_row][neighbor_column]
 
                 if neighbor:
@@ -50,6 +53,7 @@ class Dungeon:
         ):
             return
         self.map[row_index][column_index] = Room()
+        
         self._check_neighbors(row_index, column_index)
         if row_index - 1 >= 0:
             self._generate_recursive(row_index - 1, column_index)
@@ -62,27 +66,26 @@ class Dungeon:
 
     def generate_map(self):
         self._generate_recursive(self.start_position, self.start_position)
-
+#### вот тут       
 
 from math import ceil
 
-keys_count = {"whole": 0, "chest": 0, "enemies": 0}
-
-def calculate_room_marks(all_room_count, key_count):
+keys_count = {"whole": 0, "chest": 0, "enemies": 0} #где-нибудь задать чтоб был один на всю карту
+def calculate_room_marks(all_room_count, keys_count): # один раз вызывается
     chest_count = ceil(all_room_count*0,2)
     keys_count = {"whole": all_rooms_count, "chest": chest_count, "enemies": (all_room_count-chest_count-1)}
+#маркировка текущей комнаты
+def mark_room(size_layout, current_room, flag):
+    if current_room.key != None: return
+    if (x == size_layout//2 and y == size_layout//2):
+        current_room.key = "start"
+    else:
+        random_key = random(1, 2) # chest or enemies
 
-def mark_room(size, current_room):
-    if current_room.key != None:
-        if (x == size//2 and y == size//2):
-            current_room.key = "start"
+        if (random_key==1):
+            if (keys_count["chest"]>0):
+                current_room.key = "chest"
+                keys_count["chest"]-=1
         else:
-            random_key = random(1, 2) # chest or enemies
-
-            if (random_key==1):
-                if (keys_count["chest"]>0):
-                    current_room.key = "chest"
-                    keys_count["chest"]-=1
-            else:
-                current_room.key="enemies"
-                keys_count["enemies"]-=1
+            current_room.key="enemies"
+            keys_count["enemies"]-=1

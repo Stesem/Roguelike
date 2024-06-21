@@ -1,7 +1,7 @@
 import pygame
 from src.players.entity_base import EntityBase
 from math import sqrt
-from src.utils import get_mask_rect, world_size
+from src.suppor import get_mask_rect, world_size
 
 pygame.init()
 
@@ -9,7 +9,7 @@ pygame.init()
 class Player(EntityBase):
     name = "player"
     speed = 400
-    max_hp = 100
+    max_hp = 1
     hp = max_hp
 
     def __init__(self, game):
@@ -92,6 +92,7 @@ class Player(EntityBase):
         if self.can_move:
             self.rect.move_ip(self.velocity)
             self.hitbox.move_ip(self.velocity)
+        self.detect_death()
 
-    def draw(self, surface):
-        surface.blit(self.image, self.rect)
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)

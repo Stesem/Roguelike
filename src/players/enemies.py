@@ -1,12 +1,12 @@
 import pygame
 from src.players.entity_base import EntityBase
 from random import randint
-from src.utils import floor_size, world_size, check_time_passed
+from src.suppor import floor_size, world_size, check_time_passed
 
 
 class Enemy(EntityBase):
     def __init__(self, game, name, max_hp, spawn_room):
-        EntityBase.__init__(self, game, name)
+        super().__init__(game, name)
         self.max_hp = max_hp
         self.hp = self.max_hp
         self.room = spawn_room
@@ -20,22 +20,18 @@ class Enemy(EntityBase):
         self.destination_point = None
 
     def spawn(self):
-        narrowing = 50
         screen_center = (world_size[0] / 2, world_size[1] / 2)
-        spawn_space_x = (screen_center[0] - floor_size[0] / 2) + narrowing
-        spawn_space_y = (screen_center[1] - floor_size[1] / 2) + narrowing / 2
-        spawn_place_width = floor_size[0] - 2 * narrowing
-        spawn_place_height = floor_size[1] - narrowing
+        spawn_space_x = screen_center[0] - floor_size[0] / 2
+        spawn_space_y = screen_center[1] - floor_size[1] / 2
+        spawn_place_width = floor_size[0] - 100
+        spawn_place_height = floor_size[1] - 100
         self.rect.x = randint(spawn_space_x, spawn_space_x + spawn_place_width)
         self.rect.y = randint(spawn_space_y, spawn_space_y + spawn_place_height)
 
     def can_attack(self):
-        time = 0
-        if check_time_passed(time, self.attack_cd) and not self.hurt:
+        if check_time_passed(self.attack_timer, self.attack_cd):
             self.attack_timer = pygame.time.get_ticks()
             return True
-
-    """ def can_get_hurt(self): """
 
     def attack_player(self, player):
         if self.can_attack() and self.hitbox.colliderect(player.hitbox):
@@ -53,8 +49,15 @@ class Enemy(EntityBase):
         self.set_velocity(direct_vect)
 
     def chose_random_point(self):
-        range_x = ()
-        range_y = ()
+        screen_center = (world_size[0] / 2, world_size[1] / 2)
+        range_x = (
+            (screen_center[0] - floor_size[0] / 2),
+            (screen_center[0] + floor_size[0] / 2),
+        )
+        range_y = (
+            (screen_center[1] - floor_size[1] / 2),
+            (screen_center[1] + floor_size[1] / 2),
+        )
         point = [randint(range_x[0], range_x[1]), randint(range_y[0], range_y[1])]
         path_to_point = pygame.math.Vector2(
             self.game.player.hitbox.x - point[0], self.game.player.hitbox.y - point[1]
@@ -103,10 +106,7 @@ class Enemy(EntityBase):
             and self.hp > 0
             and self.can_move
         ):
-            if self.game.player.death_counter != 0:
-                self.move_to_player()
-            else:
-                self.stay_away_from_player(radius=100)
+            self.move_to_player()
         else:
             self.set_velocity([0, 0])
 
@@ -115,17 +115,17 @@ class Enemy(EntityBase):
         self.move()
         self.attack_player(self.game.player)
 
-    def draw(self):
-        self.game.dungeon_manager.current_room.blit(self.image, self.rect)
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)
 
 
 class Abomination(Enemy):
     name = "abomination"
     damage = 15
-    speed = 350
+    speed = 200
 
     def __init__(self, game, max_hp, room):
-        Enemy.__init__(self, game, max_hp, room, self.name)
+        super().__init__(game, self.name, max_hp, room)
 
 
 class Cultist(Enemy):
@@ -134,4 +134,4 @@ class Cultist(Enemy):
     speed = 300
 
     def __init__(self, game, max_hp, room):
-        Enemy.__init__(self, game, max_hp, room, self.name)
+        super().__init__(game, self.name, max_hp, room)

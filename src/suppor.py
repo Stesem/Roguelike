@@ -2,11 +2,15 @@ import pygame
 from pygame.sprite import Group
 
 
-floor_size = (936, 500)
 basic_entity_size = (64, 64)
 world_size = (1280, 800)
+floor_size = (936, 500)
+
 rooms_quantity = 8
 map_size = 7
+
+purple = (240, 0, 255)
+white = (255, 255, 255)
 
 
 def check_time_passed(time, threshold_time):

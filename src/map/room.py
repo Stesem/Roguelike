@@ -1,7 +1,7 @@
 import pygame
 from pygame.sprite import Group
 import json
-from src.utils import world_size, create_sprite, create_sprites_group
+from src.suppor import world_size, create_sprite, create_sprites_group
 
 
 class Passage:
@@ -64,8 +64,13 @@ class Room:
                 for passage in self.passages.sprites():
                     passage.rect.move_ip(room_offset)
 
-    def draw_room(self, screen):
+    def update_room(self):
         self.centering_room()
+        self.floor.update()
+        self.walls.update()
+        self.passages.update()
+
+    def draw_room(self, screen):
         self.floor.draw(screen)
         self.walls.draw(screen)
         self.passages.draw(screen)

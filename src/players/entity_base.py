@@ -1,6 +1,6 @@
 import pygame
 from src.players.animation import load_sprites_for_animation, AnimationHandler
-from src.utils import basic_entity_size, get_mask_rect
+from src.suppor import basic_entity_size, get_mask_rect
 
 
 class EntityBase:
@@ -23,6 +23,7 @@ class EntityBase:
         self.entity_animation = AnimationHandler(self)
         self.time = 0
         self.can_get_hurt = True
+        self.hurt_time_marker = 0
 
     def set_velocity(self, new_velocity):
         self.velocity = new_velocity
@@ -38,8 +39,17 @@ class EntityBase:
     def moving(self):
         return self.velocity[0] != 0 or self.velocity[1] != 0
 
+    def detecting_hurt(self):
+        if self.hurt == True:
+            self.can_get_hurt = False
+            invincibility_time = 300
+            if pygame.time.get_ticks() - self.hurt_time_marker > invincibility_time:
+                self.hurt_time_marker = pygame.time.get_ticks()
+                self.hurt = False
+                self.can_get_hurt = True
+
     def detect_death(self):
-        if self.hp <= 0 and self.dead is False:
+        if self.hp <= 0 and not self.dead:
             self.dead = True
             self.entity_animation.animation_frame = 0
             self.can_move = False

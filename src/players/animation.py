@@ -1,9 +1,9 @@
 import pygame
-import src.utils as utils
+from src.suppor import basic_entity_size
 import os
 
 
-def load_sprites_for_animation(path, sprite_size=utils.basic_entity_size):
+def load_sprites_for_animation(path, sprite_size=basic_entity_size):
     animation_data = {"IDLE": [], "WALK": [], "HURT": [], "DEAD": []}
     animation_states = os.listdir(path)
     for state in animation_states:
@@ -19,11 +19,10 @@ def load_sprites_for_animation(path, sprite_size=utils.basic_entity_size):
 
 
 class AnimationHandler:
-    def __init__(self, entity, death_frames=4, animation_speed=25):
+    def __init__(self, entity, death_frames=4, animation_speed=30):
         self.entity = entity
         self.direction = "right"
         self.frame_index = 0
-        self.hurt_time_marker = 0
         self.total_death_frames = death_frames
         self.animation_speed = animation_speed
 
@@ -76,10 +75,6 @@ class AnimationHandler:
     def play_hurt_animation(self):
         self.frame_index = 0
         self.play_idle_animation("HURT")
-        invincibility_time = 300
-        if pygame.time.get_ticks() - self.hurt_time_marker > invincibility_time:
-            self.hurt_time_marker = pygame.time.get_ticks()
-            self.entity.hurt = False
 
     def run_animation(self):
         if self.entity.dead:

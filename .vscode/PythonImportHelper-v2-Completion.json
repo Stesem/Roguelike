@@ -1,5 +1,158 @@
 [
     {
+        "label": "pygame",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pygame",
+        "description": "pygame",
+        "detail": "pygame",
+        "documentation": {}
+    },
+    {
+        "label": "white",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "isExtraImport": true,
+        "detail": "src.suppor",
+        "documentation": {}
+    },
+    {
+        "label": "purple",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "isExtraImport": true,
+        "detail": "src.suppor",
+        "documentation": {}
+    },
+    {
+        "label": "rooms_quantity",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "isExtraImport": true,
+        "detail": "src.suppor",
+        "documentation": {}
+    },
+    {
+        "label": "map_size",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "isExtraImport": true,
+        "detail": "src.suppor",
+        "documentation": {}
+    },
+    {
+        "label": "basic_entity_size",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "isExtraImport": true,
+        "detail": "src.suppor",
+        "documentation": {}
+    },
+    {
+        "label": "floor_size",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "isExtraImport": true,
+        "detail": "src.suppor",
+        "documentation": {}
+    },
+    {
+        "label": "world_size",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "isExtraImport": true,
+        "detail": "src.suppor",
+        "documentation": {}
+    },
+    {
+        "label": "create_sprite",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "isExtraImport": true,
+        "detail": "src.suppor",
+        "documentation": {}
+    },
+    {
+        "label": "create_sprites_group",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "isExtraImport": true,
+        "detail": "src.suppor",
+        "documentation": {}
+    },
+    {
+        "label": "basic_entity_size",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "isExtraImport": true,
+        "detail": "src.suppor",
+        "documentation": {}
+    },
+    {
+        "label": "floor_size",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "isExtraImport": true,
+        "detail": "src.suppor",
+        "documentation": {}
+    },
+    {
+        "label": "world_size",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "isExtraImport": true,
+        "detail": "src.suppor",
+        "documentation": {}
+    },
+    {
+        "label": "check_time_passed",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "isExtraImport": true,
+        "detail": "src.suppor",
+        "documentation": {}
+    },
+    {
+        "label": "basic_entity_size",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "isExtraImport": true,
+        "detail": "src.suppor",
+        "documentation": {}
+    },
+    {
+        "label": "get_mask_rect",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "isExtraImport": true,
+        "detail": "src.suppor",
+        "documentation": {}
+    },
+    {
+        "label": "get_mask_rect",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "isExtraImport": true,
+        "detail": "src.suppor",
+        "documentation": {}
+    },
+    {
+        "label": "world_size",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "isExtraImport": true,
+        "detail": "src.suppor",
+        "documentation": {}
+    },
+    {
+        "label": "world_size",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "isExtraImport": true,
+        "detail": "src.suppor",
+        "documentation": {}
+    },
+    {
         "label": "Room",
         "importPath": "src.map.room",
         "description": "src.map.room",
@@ -40,135 +193,6 @@
         "documentation": {}
     },
     {
-        "label": "src.utils",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "src.utils",
-        "description": "src.utils",
-        "detail": "src.utils",
-        "documentation": {}
-    },
-    {
-        "label": "rooms_quantity",
-        "importPath": "src.utils",
-        "description": "src.utils",
-        "isExtraImport": true,
-        "detail": "src.utils",
-        "documentation": {}
-    },
-    {
-        "label": "map_size",
-        "importPath": "src.utils",
-        "description": "src.utils",
-        "isExtraImport": true,
-        "detail": "src.utils",
-        "documentation": {}
-    },
-    {
-        "label": "basic_entity_size",
-        "importPath": "src.utils",
-        "description": "src.utils",
-        "isExtraImport": true,
-        "detail": "src.utils",
-        "documentation": {}
-    },
-    {
-        "label": "floor_size",
-        "importPath": "src.utils",
-        "description": "src.utils",
-        "isExtraImport": true,
-        "detail": "src.utils",
-        "documentation": {}
-    },
-    {
-        "label": "world_size",
-        "importPath": "src.utils",
-        "description": "src.utils",
-        "isExtraImport": true,
-        "detail": "src.utils",
-        "documentation": {}
-    },
-    {
-        "label": "create_sprite",
-        "importPath": "src.utils",
-        "description": "src.utils",
-        "isExtraImport": true,
-        "detail": "src.utils",
-        "documentation": {}
-    },
-    {
-        "label": "create_sprites_group",
-        "importPath": "src.utils",
-        "description": "src.utils",
-        "isExtraImport": true,
-        "detail": "src.utils",
-        "documentation": {}
-    },
-    {
-        "label": "floor_size",
-        "importPath": "src.utils",
-        "description": "src.utils",
-        "isExtraImport": true,
-        "detail": "src.utils",
-        "documentation": {}
-    },
-    {
-        "label": "world_size",
-        "importPath": "src.utils",
-        "description": "src.utils",
-        "isExtraImport": true,
-        "detail": "src.utils",
-        "documentation": {}
-    },
-    {
-        "label": "check_time_passed",
-        "importPath": "src.utils",
-        "description": "src.utils",
-        "isExtraImport": true,
-        "detail": "src.utils",
-        "documentation": {}
-    },
-    {
-        "label": "basic_entity_size",
-        "importPath": "src.utils",
-        "description": "src.utils",
-        "isExtraImport": true,
-        "detail": "src.utils",
-        "documentation": {}
-    },
-    {
-        "label": "get_mask_rect",
-        "importPath": "src.utils",
-        "description": "src.utils",
-        "isExtraImport": true,
-        "detail": "src.utils",
-        "documentation": {}
-    },
-    {
-        "label": "get_mask_rect",
-        "importPath": "src.utils",
-        "description": "src.utils",
-        "isExtraImport": true,
-        "detail": "src.utils",
-        "documentation": {}
-    },
-    {
-        "label": "world_size",
-        "importPath": "src.utils",
-        "description": "src.utils",
-        "isExtraImport": true,
-        "detail": "src.utils",
-        "documentation": {}
-    },
-    {
-        "label": "world_size",
-        "importPath": "src.utils",
-        "description": "src.utils",
-        "isExtraImport": true,
-        "detail": "src.utils",
-        "documentation": {}
-    },
-    {
         "label": "shuffle",
         "importPath": "random",
         "description": "random",
@@ -198,15 +222,6 @@
         "description": "random",
         "isExtraImport": true,
         "detail": "random",
-        "documentation": {}
-    },
-    {
-        "label": "pygame",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "pygame",
-        "description": "pygame",
-        "detail": "pygame",
         "documentation": {}
     },
     {
@@ -260,6 +275,22 @@
         "documentation": {}
     },
     {
+        "label": "Abomination",
+        "importPath": "src.players.enemies",
+        "description": "src.players.enemies",
+        "isExtraImport": true,
+        "detail": "src.players.enemies",
+        "documentation": {}
+    },
+    {
+        "label": "Cultist",
+        "importPath": "src.players.enemies",
+        "description": "src.players.enemies",
+        "isExtraImport": true,
+        "detail": "src.players.enemies",
+        "documentation": {}
+    },
+    {
         "label": "load_sprites_for_animation",
         "importPath": "src.players.animation",
         "description": "src.players.animation",
@@ -300,6 +331,14 @@
         "documentation": {}
     },
     {
+        "label": "EnemyManager",
+        "importPath": "src.players.enemy_manager",
+        "description": "src.players.enemy_manager",
+        "isExtraImport": true,
+        "detail": "src.players.enemy_manager",
+        "documentation": {}
+    },
+    {
         "label": "time",
         "importPath": "time",
         "description": "time",
@@ -322,6 +361,15 @@
         "description": "src.items.base_item",
         "peekOfCode": "class BaseItem():\n    def __init__(self):\n        pass\n    def use(self):\n        pass",
         "detail": "src.items.base_item",
+        "documentation": {}
+    },
+    {
+        "label": "CultistBullet",
+        "kind": 6,
+        "importPath": "src.items.bullet",
+        "description": "src.items.bullet",
+        "peekOfCode": "class CultistBullet:\n    speed = 7\n    size = 10\n    radius = 5\n    def __init__(self, game, master, x, y, target, room):\n        self.game = game\n        self.master = master\n        self.damage = master.damage\n        self.rect = None\n        self.image = None",
+        "detail": "src.items.bullet",
         "documentation": {}
     },
     {
@@ -374,7 +422,7 @@
         "kind": 6,
         "importPath": "src.players.animation",
         "description": "src.players.animation",
-        "peekOfCode": "class AnimationHandler:\n    def __init__(self, entity, death_frames=4, animation_speed=25):\n        self.entity = entity\n        self.direction = \"right\"\n        self.frame_index = 0\n        self.hurt_time_marker = 0\n        self.total_death_frames = death_frames\n        self.animation_speed = animation_speed\n    def is_moving(self):\n        return bool(self.entity.velocity[0]) or bool(self.entity.velocity[1])",
+        "peekOfCode": "class AnimationHandler:\n    def __init__(self, entity, death_frames=4, animation_speed=30):\n        self.entity = entity\n        self.direction = \"right\"\n        self.frame_index = 0\n        self.total_death_frames = death_frames\n        self.animation_speed = animation_speed\n    def is_moving(self):\n        return bool(self.entity.velocity[0]) or bool(self.entity.velocity[1])\n    def determine_direction(self):",
         "detail": "src.players.animation",
         "documentation": {}
     },
@@ -383,7 +431,7 @@
         "kind": 2,
         "importPath": "src.players.animation",
         "description": "src.players.animation",
-        "peekOfCode": "def load_sprites_for_animation(path, sprite_size=utils.basic_entity_size):\n    animation_data = {\"IDLE\": [], \"WALK\": [], \"HURT\": [], \"DEAD\": []}\n    animation_states = os.listdir(path)\n    for state in animation_states:\n        sub_states = os.listdir(path + state)\n        for sub_state in sub_states:\n            key = state.upper()\n            animation_image = pygame.image.load(\n                path + state + \"/\" + sub_state\n            ).convert_alpha()",
+        "peekOfCode": "def load_sprites_for_animation(path, sprite_size=basic_entity_size):\n    animation_data = {\"IDLE\": [], \"WALK\": [], \"HURT\": [], \"DEAD\": []}\n    animation_states = os.listdir(path)\n    for state in animation_states:\n        sub_states = os.listdir(path + state)\n        for sub_state in sub_states:\n            key = state.upper()\n            animation_image = pygame.image.load(\n                path + state + \"/\" + sub_state\n            ).convert_alpha()",
         "detail": "src.players.animation",
         "documentation": {}
     },
@@ -392,7 +440,7 @@
         "kind": 6,
         "importPath": "src.players.enemies",
         "description": "src.players.enemies",
-        "peekOfCode": "class Enemy(EntityBase):\n    def __init__(self, game, name, max_hp, spawn_room):\n        EntityBase.__init__(self, game, name)\n        self.max_hp = max_hp\n        self.hp = self.max_hp\n        self.room = spawn_room\n        self.death_counter = 1\n        self.attack_cd = 1000\n        self.attack_timer = 0\n        self.being_attacked_timer = 0",
+        "peekOfCode": "class Enemy(EntityBase):\n    def __init__(self, game, name, max_hp, spawn_room):\n        super().__init__(game, name)\n        self.max_hp = max_hp\n        self.hp = self.max_hp\n        self.room = spawn_room\n        self.death_counter = 1\n        self.attack_cd = 1000\n        self.attack_timer = 0\n        self.being_attacked_timer = 0",
         "detail": "src.players.enemies",
         "documentation": {}
     },
@@ -401,7 +449,7 @@
         "kind": 6,
         "importPath": "src.players.enemies",
         "description": "src.players.enemies",
-        "peekOfCode": "class Abomination(Enemy):\n    name = \"abomination\"\n    damage = 15\n    speed = 350\n    def __init__(self, game, max_hp, room):\n        Enemy.__init__(self, game, max_hp, room, self.name)\nclass Cultist(Enemy):\n    name = \"cultist\"\n    damage = 20\n    speed = 300",
+        "peekOfCode": "class Abomination(Enemy):\n    name = \"abomination\"\n    damage = 15\n    speed = 200\n    def __init__(self, game, max_hp, room):\n        super().__init__(game, self.name, max_hp, room)\nclass Cultist(Enemy):\n    name = \"cultist\"\n    damage = 20\n    speed = 300",
         "detail": "src.players.enemies",
         "documentation": {}
     },
@@ -410,17 +458,17 @@
         "kind": 6,
         "importPath": "src.players.enemies",
         "description": "src.players.enemies",
-        "peekOfCode": "class Cultist(Enemy):\n    name = \"cultist\"\n    damage = 20\n    speed = 300\n    def __init__(self, game, max_hp, room):\n        Enemy.__init__(self, game, max_hp, room, self.name)",
+        "peekOfCode": "class Cultist(Enemy):\n    name = \"cultist\"\n    damage = 20\n    speed = 300\n    def __init__(self, game, max_hp, room):\n        super().__init__(game, self.name, max_hp, room)",
         "detail": "src.players.enemies",
         "documentation": {}
     },
     {
         "label": "EnemyManager",
         "kind": 6,
-        "importPath": "src.players.enemi_manager",
-        "description": "src.players.enemi_manager",
-        "peekOfCode": "class EnemyManager:\n    def __init__(self, game):\n        self.game = game\n        self.enemy_list = []\n    def draw_enemies(self):\n        for enemy in self.game.dungeon_manager.current_room.enemy_list:\n            enemy.draw()\n    def set_enemy_list(self):\n        self.enemy_list.clear()\n        for enemy in self.game.dungeon_manager.current_room.enemy_list:",
-        "detail": "src.players.enemi_manager",
+        "importPath": "src.players.enemy_manager",
+        "description": "src.players.enemy_manager",
+        "peekOfCode": "class EnemyManager:\n    def __init__(self, game):\n        self.game = game\n        self.enemy_list = []\n    def draw_enemies(self, screen):\n        for enemy in self.game.dungeon_manager.current_room.enemy_list:\n            enemy.draw(screen)\n    def fill_enemy_list(self):\n        self.enemy_list.clear()\n        for enemy in self.game.dungeon_manager.current_room.enemy_list:",
+        "detail": "src.players.enemy_manager",
         "documentation": {}
     },
     {
@@ -437,7 +485,7 @@
         "kind": 6,
         "importPath": "src.players.player",
         "description": "src.players.player",
-        "peekOfCode": "class Player(EntityBase):\n    name = \"player\"\n    speed = 400\n    max_hp = 100\n    hp = max_hp\n    def __init__(self, game):\n        super().__init__(game, self.name)\n        self.weapon = None\n        self.rect = self.image.get_rect(center=(world_size[0] / 2, world_size[1] / 2))\n        self.hitbox = get_mask_rect(self.image, self.rect.topleft)",
+        "peekOfCode": "class Player(EntityBase):\n    name = \"player\"\n    speed = 400\n    max_hp = 1\n    hp = max_hp\n    def __init__(self, game):\n        super().__init__(game, self.name)\n        self.weapon = None\n        self.rect = self.image.get_rect(center=(world_size[0] / 2, world_size[1] / 2))\n        self.hitbox = get_mask_rect(self.image, self.rect.topleft)",
         "detail": "src.players.player",
         "documentation": {}
     },
@@ -446,7 +494,7 @@
         "kind": 6,
         "importPath": "src.game",
         "description": "src.game",
-        "peekOfCode": "class Game:\n    def __init__(self):\n        self.display = pygame.display.set_mode(world_size)\n        self.screen = pygame.Surface(world_size).convert()\n        self.clock = pygame.time.Clock()\n        self.player = Player(self)\n        self.dungeon_manager = DungeonManager(self)\n        self.running = True\n        self.d_time = 0\n        self.fps = 60",
+        "peekOfCode": "class Game:\n    def __init__(self):\n        self.display = pygame.display.set_mode(world_size)\n        self.screen = pygame.Surface(world_size).convert()\n        self.clock = pygame.time.Clock()\n        self.player = Player(self)\n        self.dungeon_manager = DungeonManager(self)\n        self.enemy_manager = EnemyManager(self)\n        self.running = True\n        self.d_time = 0",
         "detail": "src.game",
         "documentation": {}
     },
@@ -462,82 +510,100 @@
     {
         "label": "check_time_passed",
         "kind": 2,
-        "importPath": "src.utils",
-        "description": "src.utils",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
         "peekOfCode": "def check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:\n        surface_mask_rect = rect_list[0].unionall(rect_list)\n        surface_mask_rect.move_ip(topleft)",
-        "detail": "src.utils",
+        "detail": "src.suppor",
         "documentation": {}
     },
     {
         "label": "get_mask_rect",
         "kind": 2,
-        "importPath": "src.utils",
-        "description": "src.utils",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
         "peekOfCode": "def get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:\n        surface_mask_rect = rect_list[0].unionall(rect_list)\n        surface_mask_rect.move_ip(topleft)\n        return surface_mask_rect\ndef create_sprite(image, sprite_info):\n    sprite = pygame.sprite.Sprite()\n    sprite.image = image",
-        "detail": "src.utils",
+        "detail": "src.suppor",
         "documentation": {}
     },
     {
         "label": "create_sprite",
         "kind": 2,
-        "importPath": "src.utils",
-        "description": "src.utils",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
         "peekOfCode": "def create_sprite(image, sprite_info):\n    sprite = pygame.sprite.Sprite()\n    sprite.image = image\n    sprite.rect = pygame.Rect(\n        sprite_info[\"x\"],\n        sprite_info[\"y\"],\n        sprite_info[\"width\"],\n        sprite_info[\"height\"],\n    )\n    return sprite",
-        "detail": "src.utils",
+        "detail": "src.suppor",
         "documentation": {}
     },
     {
         "label": "create_sprites_group",
         "kind": 2,
-        "importPath": "src.utils",
-        "description": "src.utils",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
         "peekOfCode": "def create_sprites_group(sprites_info):\n    group = Group()\n    for sprite_info in sprites_info:\n        image = pygame.image.load(sprite_info[\"image\"]).convert_alpha()\n        image = pygame.transform.scale(\n            image, (sprite_info[\"width\"], sprite_info[\"height\"])\n        )\n        sprite = create_sprite(image, sprite_info)\n        group.add(sprite)\n    return group",
-        "detail": "src.utils",
-        "documentation": {}
-    },
-    {
-        "label": "floor_size",
-        "kind": 5,
-        "importPath": "src.utils",
-        "description": "src.utils",
-        "peekOfCode": "floor_size = (936, 500)\nbasic_entity_size = (64, 64)\nworld_size = (1280, 800)\nrooms_quantity = 8\nmap_size = 7\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):",
-        "detail": "src.utils",
+        "detail": "src.suppor",
         "documentation": {}
     },
     {
         "label": "basic_entity_size",
         "kind": 5,
-        "importPath": "src.utils",
-        "description": "src.utils",
-        "peekOfCode": "basic_entity_size = (64, 64)\nworld_size = (1280, 800)\nrooms_quantity = 8\nmap_size = 7\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)",
-        "detail": "src.utils",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "peekOfCode": "basic_entity_size = (64, 64)\nworld_size = (1280, 800)\nfloor_size = (936, 500)\nrooms_quantity = 8\nmap_size = 7\npurple = (240, 0, 255)\nwhite = (255, 255, 255)\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()",
+        "detail": "src.suppor",
         "documentation": {}
     },
     {
         "label": "world_size",
         "kind": 5,
-        "importPath": "src.utils",
-        "description": "src.utils",
-        "peekOfCode": "world_size = (1280, 800)\nrooms_quantity = 8\nmap_size = 7\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()",
-        "detail": "src.utils",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "peekOfCode": "world_size = (1280, 800)\nfloor_size = (936, 500)\nrooms_quantity = 8\nmap_size = 7\npurple = (240, 0, 255)\nwhite = (255, 255, 255)\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True",
+        "detail": "src.suppor",
+        "documentation": {}
+    },
+    {
+        "label": "floor_size",
+        "kind": 5,
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "peekOfCode": "floor_size = (936, 500)\nrooms_quantity = 8\nmap_size = 7\npurple = (240, 0, 255)\nwhite = (255, 255, 255)\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):",
+        "detail": "src.suppor",
         "documentation": {}
     },
     {
         "label": "rooms_quantity",
         "kind": 5,
-        "importPath": "src.utils",
-        "description": "src.utils",
-        "peekOfCode": "rooms_quantity = 8\nmap_size = 7\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:",
-        "detail": "src.utils",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "peekOfCode": "rooms_quantity = 8\nmap_size = 7\npurple = (240, 0, 255)\nwhite = (255, 255, 255)\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)",
+        "detail": "src.suppor",
         "documentation": {}
     },
     {
         "label": "map_size",
         "kind": 5,
-        "importPath": "src.utils",
-        "description": "src.utils",
-        "peekOfCode": "map_size = 7\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:\n        surface_mask_rect = rect_list[0].unionall(rect_list)",
-        "detail": "src.utils",
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "peekOfCode": "map_size = 7\npurple = (240, 0, 255)\nwhite = (255, 255, 255)\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()",
+        "detail": "src.suppor",
+        "documentation": {}
+    },
+    {
+        "label": "purple",
+        "kind": 5,
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "peekOfCode": "purple = (240, 0, 255)\nwhite = (255, 255, 255)\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:",
+        "detail": "src.suppor",
+        "documentation": {}
+    },
+    {
+        "label": "white",
+        "kind": 5,
+        "importPath": "src.suppor",
+        "description": "src.suppor",
+        "peekOfCode": "white = (255, 255, 255)\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:\n        surface_mask_rect = rect_list[0].unionall(rect_list)",
+        "detail": "src.suppor",
         "documentation": {}
     },
     {

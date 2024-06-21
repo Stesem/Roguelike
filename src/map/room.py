@@ -1,31 +1,7 @@
 import pygame
 from pygame.sprite import Group
 import json
-
-
-# Вспомогательные функции
-def create_sprite(image, sprite_info):
-    sprite = pygame.sprite.Sprite()
-    sprite.image = image
-    sprite.rect = pygame.Rect(
-        sprite_info["x"],
-        sprite_info["y"],
-        sprite_info["width"],
-        sprite_info["height"],
-    )
-    return sprite
-
-
-def create_sprites_group(sprites_info):
-    group = Group()
-    for sprite_info in sprites_info:
-        image = pygame.image.load(sprite_info["image"]).convert_alpha()
-        image = pygame.transform.scale(
-            image, (sprite_info["width"], sprite_info["height"])
-        )
-        sprite = create_sprite(image, sprite_info)
-        group.add(sprite)
-    return group
+from src.utils import world_size, create_sprite, create_sprites_group
 
 
 class Passage:
@@ -71,11 +47,22 @@ class Room:
         self.passages_on_direction[direction].to_room = next_room
         self.passages.add(pas.sprite)
 
+    def centering_room(self):
+        screen_cecter = (world_size[0] / 2, world_size[1] / 2)
+        room_offset = (
+            screen_cecter[0] - self.width / 2,
+            screen_cecter[1] - self.height / 2,
+        )
+        for floor in self.floor.sprites():
+            if floor.rect.topleft == (32, 32):
+                floor.rect.move_ip(room_offset)
+                for wall in self.walls.sprites():
+                    wall.rect.move_ip(room_offset)
+                for passage in self.passages.sprites():
+                    passage.rect.move_ip(room_offset)
+
     def draw_room(self, screen):
+        self.centering_room()
         self.floor.draw(screen)
         self.walls.draw(screen)
         self.passages.draw(screen)
-
-
-"""         for passage in self.passages:
-            print(passage.rect.topleft) """

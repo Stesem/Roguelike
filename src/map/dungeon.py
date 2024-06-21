@@ -49,7 +49,6 @@ class Dungeon:
             or not self.map_layout.layout[row_index][column_index]
         ):
             return
-        print(f"Creating room at ({row_index}, {column_index})")
         self.map[row_index][column_index] = Room()
         self._check_neighbors(row_index, column_index)
         if row_index - 1 >= 0:

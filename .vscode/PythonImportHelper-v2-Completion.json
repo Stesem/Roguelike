@@ -73,6 +73,54 @@
         "documentation": {}
     },
     {
+        "label": "world_size",
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "isExtraImport": true,
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
+        "label": "create_sprite",
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "isExtraImport": true,
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
+        "label": "create_sprites_group",
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "isExtraImport": true,
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
+        "label": "floor_size",
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "isExtraImport": true,
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
+        "label": "world_size",
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "isExtraImport": true,
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
+        "label": "check_time_passed",
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "isExtraImport": true,
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
         "label": "basic_entity_size",
         "importPath": "src.utils",
         "description": "src.utils",
@@ -105,7 +153,23 @@
         "documentation": {}
     },
     {
+        "label": "world_size",
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "isExtraImport": true,
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
         "label": "shuffle",
+        "importPath": "random",
+        "description": "random",
+        "isExtraImport": true,
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "randint",
         "importPath": "random",
         "description": "random",
         "isExtraImport": true,
@@ -127,6 +191,14 @@
         "importPath": "pygame",
         "description": "pygame",
         "detail": "pygame",
+        "documentation": {}
+    },
+    {
+        "label": "Group",
+        "importPath": "pygame.sprite",
+        "description": "pygame.sprite",
+        "isExtraImport": true,
+        "detail": "pygame.sprite",
         "documentation": {}
     },
     {
@@ -212,6 +284,14 @@
         "documentation": {}
     },
     {
+        "label": "time",
+        "importPath": "time",
+        "description": "time",
+        "isExtraImport": true,
+        "detail": "time",
+        "documentation": {}
+    },
+    {
         "label": "Game",
         "importPath": "src.game",
         "description": "src.game",
@@ -274,24 +354,6 @@
         "documentation": {}
     },
     {
-        "label": "create_sprite",
-        "kind": 2,
-        "importPath": "src.map.room",
-        "description": "src.map.room",
-        "peekOfCode": "def create_sprite(image, sprite_info):\n    sprite = pygame.sprite.Sprite()\n    sprite.image = image\n    sprite.rect = pygame.Rect(\n        sprite_info[\"x\"],\n        sprite_info[\"y\"],\n        sprite_info[\"width\"],\n        sprite_info[\"height\"],\n    )\n    return sprite",
-        "detail": "src.map.room",
-        "documentation": {}
-    },
-    {
-        "label": "create_sprites_group",
-        "kind": 2,
-        "importPath": "src.map.room",
-        "description": "src.map.room",
-        "peekOfCode": "def create_sprites_group(sprites_info):\n    group = Group()\n    for sprite_info in sprites_info:\n        image = pygame.image.load(sprite_info[\"image\"]).convert_alpha()\n        image = pygame.transform.scale(\n            image, (sprite_info[\"width\"], sprite_info[\"height\"])\n        )\n        sprite = create_sprite(image, sprite_info)\n        group.add(sprite)\n    return group",
-        "detail": "src.map.room",
-        "documentation": {}
-    },
-    {
         "label": "AnimationHandler",
         "kind": 6,
         "importPath": "src.players.animation",
@@ -314,7 +376,7 @@
         "kind": 6,
         "importPath": "src.players.enemies",
         "description": "src.players.enemies",
-        "peekOfCode": "class Enemy(EntityBase):\n    def __init__(self):\n        self.protection = 0\n    def move(self):\n        pass",
+        "peekOfCode": "class Enemy(EntityBase):\n    def __init__(self, game, name, max_hp, spawn_room):\n        EntityBase.__init__(self, game, name)\n        self.max_hp = max_hp\n        self.hp = self.max_hp\n        self.room = spawn_room\n        self.death_counter = 1\n        self.attack_cd = 1000\n        self.attack_timer = 0\n        self.being_attacked_timer = 0",
         "detail": "src.players.enemies",
         "documentation": {}
     },
@@ -332,7 +394,7 @@
         "kind": 6,
         "importPath": "src.players.player",
         "description": "src.players.player",
-        "peekOfCode": "class Player(EntityBase):\n    name = \"player\"\n    speed = 10\n    max_hp = 100\n    hp = max_hp\n    def __init__(self, game):\n        super().__init__(game, self.name)\n        self.weapon = None\n        self.rect = self.image.get_rect(center=(500, 250))\n        self.hitbox = get_mask_rect(self.image, self.rect.topleft)",
+        "peekOfCode": "class Player(EntityBase):\n    name = \"player\"\n    speed = 400\n    max_hp = 100\n    hp = max_hp\n    def __init__(self, game):\n        super().__init__(game, self.name)\n        self.weapon = None\n        self.rect = self.image.get_rect(center=(world_size[0] / 2, world_size[1] / 2))\n        self.hitbox = get_mask_rect(self.image, self.rect.topleft)",
         "detail": "src.players.player",
         "documentation": {}
     },
@@ -341,7 +403,7 @@
         "kind": 6,
         "importPath": "src.game",
         "description": "src.game",
-        "peekOfCode": "class Game:\n    def __init__(self):\n        self.display = pygame.display.set_mode(world_size)\n        self.screen = pygame.Surface(world_size).convert()\n        self.clock = pygame.time.Clock()\n        self.player = Player(self)\n        self.dungeon_manager = DungeonManager(self)\n        self.running = True\n        self.game_time = None\n        self.fps = 60",
+        "peekOfCode": "class Game:\n    def __init__(self):\n        self.display = pygame.display.set_mode(world_size)\n        self.screen = pygame.Surface(world_size).convert()\n        self.clock = pygame.time.Clock()\n        self.player = Player(self)\n        self.dungeon_manager = DungeonManager(self)\n        self.running = True\n        self.d_time = 0\n        self.fps = 60",
         "detail": "src.game",
         "documentation": {}
     },
@@ -355,11 +417,38 @@
         "documentation": {}
     },
     {
+        "label": "check_time_passed",
+        "kind": 2,
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "peekOfCode": "def check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:\n        surface_mask_rect = rect_list[0].unionall(rect_list)\n        surface_mask_rect.move_ip(topleft)",
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
         "label": "get_mask_rect",
         "kind": 2,
         "importPath": "src.utils",
         "description": "src.utils",
-        "peekOfCode": "def get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:\n        surface_mask_rect = rect_list[0].unionall(rect_list)\n        surface_mask_rect.move_ip(topleft)\n        return surface_mask_rect",
+        "peekOfCode": "def get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:\n        surface_mask_rect = rect_list[0].unionall(rect_list)\n        surface_mask_rect.move_ip(topleft)\n        return surface_mask_rect\ndef create_sprite(image, sprite_info):\n    sprite = pygame.sprite.Sprite()\n    sprite.image = image",
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
+        "label": "create_sprite",
+        "kind": 2,
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "peekOfCode": "def create_sprite(image, sprite_info):\n    sprite = pygame.sprite.Sprite()\n    sprite.image = image\n    sprite.rect = pygame.Rect(\n        sprite_info[\"x\"],\n        sprite_info[\"y\"],\n        sprite_info[\"width\"],\n        sprite_info[\"height\"],\n    )\n    return sprite",
+        "detail": "src.utils",
+        "documentation": {}
+    },
+    {
+        "label": "create_sprites_group",
+        "kind": 2,
+        "importPath": "src.utils",
+        "description": "src.utils",
+        "peekOfCode": "def create_sprites_group(sprites_info):\n    group = Group()\n    for sprite_info in sprites_info:\n        image = pygame.image.load(sprite_info[\"image\"]).convert_alpha()\n        image = pygame.transform.scale(\n            image, (sprite_info[\"width\"], sprite_info[\"height\"])\n        )\n        sprite = create_sprite(image, sprite_info)\n        group.add(sprite)\n    return group",
         "detail": "src.utils",
         "documentation": {}
     },
@@ -368,7 +457,7 @@
         "kind": 5,
         "importPath": "src.utils",
         "description": "src.utils",
-        "peekOfCode": "floor_size = (936, 500)\nbasic_entity_size = (64, 64)\nworld_size = (1280, 800)\nrooms_quantity = 10\nmap_size = 9\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:\n        surface_mask_rect = rect_list[0].unionall(rect_list)",
+        "peekOfCode": "floor_size = (936, 500)\nbasic_entity_size = (64, 64)\nworld_size = (1280, 800)\nrooms_quantity = 10\nmap_size = 9\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):",
         "detail": "src.utils",
         "documentation": {}
     },
@@ -377,7 +466,7 @@
         "kind": 5,
         "importPath": "src.utils",
         "description": "src.utils",
-        "peekOfCode": "basic_entity_size = (64, 64)\nworld_size = (1280, 800)\nrooms_quantity = 10\nmap_size = 9\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:\n        surface_mask_rect = rect_list[0].unionall(rect_list)\n        surface_mask_rect.move_ip(topleft)",
+        "peekOfCode": "basic_entity_size = (64, 64)\nworld_size = (1280, 800)\nrooms_quantity = 10\nmap_size = 9\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)",
         "detail": "src.utils",
         "documentation": {}
     },
@@ -386,7 +475,7 @@
         "kind": 5,
         "importPath": "src.utils",
         "description": "src.utils",
-        "peekOfCode": "world_size = (1280, 800)\nrooms_quantity = 10\nmap_size = 9\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:\n        surface_mask_rect = rect_list[0].unionall(rect_list)\n        surface_mask_rect.move_ip(topleft)\n        return surface_mask_rect",
+        "peekOfCode": "world_size = (1280, 800)\nrooms_quantity = 10\nmap_size = 9\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()",
         "detail": "src.utils",
         "documentation": {}
     },
@@ -395,7 +484,7 @@
         "kind": 5,
         "importPath": "src.utils",
         "description": "src.utils",
-        "peekOfCode": "rooms_quantity = 10\nmap_size = 9\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:\n        surface_mask_rect = rect_list[0].unionall(rect_list)\n        surface_mask_rect.move_ip(topleft)\n        return surface_mask_rect",
+        "peekOfCode": "rooms_quantity = 10\nmap_size = 9\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:",
         "detail": "src.utils",
         "documentation": {}
     },
@@ -404,7 +493,7 @@
         "kind": 5,
         "importPath": "src.utils",
         "description": "src.utils",
-        "peekOfCode": "map_size = 9\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:\n        surface_mask_rect = rect_list[0].unionall(rect_list)\n        surface_mask_rect.move_ip(topleft)\n        return surface_mask_rect",
+        "peekOfCode": "map_size = 9\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:\n        surface_mask_rect = rect_list[0].unionall(rect_list)",
         "detail": "src.utils",
         "documentation": {}
     },

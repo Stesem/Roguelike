@@ -15,7 +15,6 @@ class EntityBase:
         ).convert_alpha()
         self.rect = self.image.get_rect()
         self.hitbox = get_mask_rect(self.image, self.rect.topleft)
-        self.hitbox.midbottom = self.rect.midbottom
         self.velocity = [0, 0]
         self.hurt = False
         self.dead = False
@@ -27,6 +26,14 @@ class EntityBase:
 
     def set_velocity(self, new_velocity):
         self.velocity = new_velocity
+
+    def slowing_by_hurt(self):
+        base_speed = self.speed
+        hurted_speed = base_speed - 70
+        if self.hurt:
+            self.speed = hurted_speed
+        else:
+            self.speed = base_speed
 
     def moving(self):
         return self.velocity[0] != 0 or self.velocity[1] != 0
@@ -62,5 +69,5 @@ class EntityBase:
         )
         for wall in self.game.dungeon_manager.current_room.walls:
             if any(wall.rect.collidepoint(point) for point in collide_points):
-                self.velocity = [0, 0]
+                self.set_velocity([0, 0])
                 return

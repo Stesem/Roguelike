@@ -8,6 +8,14 @@
         "documentation": {}
     },
     {
+        "label": "Room",
+        "importPath": "src.map.room",
+        "description": "src.map.room",
+        "isExtraImport": true,
+        "detail": "src.map.room",
+        "documentation": {}
+    },
+    {
         "label": "MapLayout",
         "importPath": "src.map.map_layout",
         "description": "src.map.map_layout",
@@ -162,6 +170,14 @@
     },
     {
         "label": "shuffle",
+        "importPath": "random",
+        "description": "random",
+        "isExtraImport": true,
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "randint",
         "importPath": "random",
         "description": "random",
         "isExtraImport": true,
@@ -381,6 +397,33 @@
         "documentation": {}
     },
     {
+        "label": "Abomination",
+        "kind": 6,
+        "importPath": "src.players.enemies",
+        "description": "src.players.enemies",
+        "peekOfCode": "class Abomination(Enemy):\n    name = \"abomination\"\n    damage = 15\n    speed = 350\n    def __init__(self, game, max_hp, room):\n        Enemy.__init__(self, game, max_hp, room, self.name)\nclass Cultist(Enemy):\n    name = \"cultist\"\n    damage = 20\n    speed = 300",
+        "detail": "src.players.enemies",
+        "documentation": {}
+    },
+    {
+        "label": "Cultist",
+        "kind": 6,
+        "importPath": "src.players.enemies",
+        "description": "src.players.enemies",
+        "peekOfCode": "class Cultist(Enemy):\n    name = \"cultist\"\n    damage = 20\n    speed = 300\n    def __init__(self, game, max_hp, room):\n        Enemy.__init__(self, game, max_hp, room, self.name)",
+        "detail": "src.players.enemies",
+        "documentation": {}
+    },
+    {
+        "label": "EnemyManager",
+        "kind": 6,
+        "importPath": "src.players.enemi_manager",
+        "description": "src.players.enemi_manager",
+        "peekOfCode": "class EnemyManager:\n    def __init__(self, game):\n        self.game = game\n        self.enemy_list = []\n    def draw_enemies(self):\n        for enemy in self.game.dungeon_manager.current_room.enemy_list:\n            enemy.draw()\n    def set_enemy_list(self):\n        self.enemy_list.clear()\n        for enemy in self.game.dungeon_manager.current_room.enemy_list:",
+        "detail": "src.players.enemi_manager",
+        "documentation": {}
+    },
+    {
         "label": "EntityBase",
         "kind": 6,
         "importPath": "src.players.entity_base",
@@ -457,7 +500,7 @@
         "kind": 5,
         "importPath": "src.utils",
         "description": "src.utils",
-        "peekOfCode": "floor_size = (936, 500)\nbasic_entity_size = (64, 64)\nworld_size = (1280, 800)\nrooms_quantity = 10\nmap_size = 9\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):",
+        "peekOfCode": "floor_size = (936, 500)\nbasic_entity_size = (64, 64)\nworld_size = (1280, 800)\nrooms_quantity = 8\nmap_size = 7\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):",
         "detail": "src.utils",
         "documentation": {}
     },
@@ -466,7 +509,7 @@
         "kind": 5,
         "importPath": "src.utils",
         "description": "src.utils",
-        "peekOfCode": "basic_entity_size = (64, 64)\nworld_size = (1280, 800)\nrooms_quantity = 10\nmap_size = 9\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)",
+        "peekOfCode": "basic_entity_size = (64, 64)\nworld_size = (1280, 800)\nrooms_quantity = 8\nmap_size = 7\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)",
         "detail": "src.utils",
         "documentation": {}
     },
@@ -475,7 +518,7 @@
         "kind": 5,
         "importPath": "src.utils",
         "description": "src.utils",
-        "peekOfCode": "world_size = (1280, 800)\nrooms_quantity = 10\nmap_size = 9\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()",
+        "peekOfCode": "world_size = (1280, 800)\nrooms_quantity = 8\nmap_size = 7\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()",
         "detail": "src.utils",
         "documentation": {}
     },
@@ -484,7 +527,7 @@
         "kind": 5,
         "importPath": "src.utils",
         "description": "src.utils",
-        "peekOfCode": "rooms_quantity = 10\nmap_size = 9\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:",
+        "peekOfCode": "rooms_quantity = 8\nmap_size = 7\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:",
         "detail": "src.utils",
         "documentation": {}
     },
@@ -493,7 +536,7 @@
         "kind": 5,
         "importPath": "src.utils",
         "description": "src.utils",
-        "peekOfCode": "map_size = 9\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:\n        surface_mask_rect = rect_list[0].unionall(rect_list)",
+        "peekOfCode": "map_size = 7\ndef check_time_passed(time, threshold_time):\n    if pygame.time.get_ticks() - time > threshold_time:\n        time = pygame.time.get_ticks()\n        return True\ndef get_mask_rect(surface, topleft=(0, 0)):\n    surface_mask = pygame.mask.from_surface(surface)\n    rect_list = surface_mask.get_bounding_rects()\n    if rect_list:\n        surface_mask_rect = rect_list[0].unionall(rect_list)",
         "detail": "src.utils",
         "documentation": {}
     },

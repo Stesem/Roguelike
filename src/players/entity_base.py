@@ -47,7 +47,7 @@ class EntityBase:
         """ if self.death_counter == 0:
             if self.room:
                 self.room.enemy_list.remove(self)
- """
+"""
 
     def basic_update(self):
         self.detect_death()

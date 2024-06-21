@@ -26,6 +26,7 @@ class Room:
         }
         self.load_from_json()
         self.passages = Group()
+        self.key = None
 
     def load_from_json(self):
         with open("src/map/room_pattern.json", "r") as file:

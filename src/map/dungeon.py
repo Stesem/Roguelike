@@ -62,3 +62,27 @@ class Dungeon:
 
     def generate_map(self):
         self._generate_recursive(self.start_position, self.start_position)
+
+
+from math import ceil
+
+keys_count = {"whole": 0, "chest": 0, "enemies": 0}
+
+def calculate_room_marks(all_room_count, key_count):
+    chest_count = ceil(all_room_count*0,2)
+    keys_count = {"whole": all_rooms_count, "chest": chest_count, "enemies": (all_room_count-chest_count-1)}
+
+def mark_room(size, current_room):
+    if current_room.key != None:
+        if (x == size//2 and y == size//2):
+            current_room.key = "start"
+        else:
+            random_key = random(1, 2) # chest or enemies
+
+            if (random_key==1):
+                if (keys_count["chest"]>0):
+                    current_room.key = "chest"
+                    keys_count["chest"]-=1
+            else:
+                current_room.key="enemies"
+                keys_count["enemies"]-=1

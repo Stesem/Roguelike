@@ -65,20 +65,16 @@ class Player(EntityBase):
             position_after_moving.bottomleft,
             position_after_moving.bottomright,
         )
+
+        for passage in self.game.dungeon_manager.current_room.passages:
+            if any(passage.rect.collidepoint(point) for point in collide_points):
+                self.game.dungeon_manager.go_to_next_room(passage)
+                return
+
         for wall in self.game.dungeon_manager.current_room.walls:
             if any(wall.rect.collidepoint(point) for point in collide_points):
                 self.set_velocity([0, 0])
                 return
-
-        """ if not collided_with_wall:
-            for passage in current_room.passages:
-                if any(
-                    passage.rect.collidepoint(check_point)
-                    for check_point in collide_points
-                ):
-                    if passage.rect.collidepoint(collide_points[1]):
-                        self.game.dungeon_manager.go_to_next_room(passage)
-                    break """
 
     def update(self):
         if self.death_counter == 0:

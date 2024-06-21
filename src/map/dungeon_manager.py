@@ -24,7 +24,11 @@ class DungeonManager:
     def go_to_next_room(self, passage):
         current_room = self.current_room
         for direction in current_room.passages_on_direction:
-            if current_room.passages_on_direction[direction].sprite == passage:
+
+            if (
+                current_room.passages_on_direction[direction]
+                and current_room.passages_on_direction[direction].sprite == passage
+            ):
                 next_room = current_room.passages_on_direction[direction].to_room
                 self.set_current_room(next_room)
                 self.move_player_in_new_room(direction)
@@ -51,7 +55,7 @@ class DungeonManager:
             self.game.player.hitbox.move_ip(
                 0, (floor_size[1] - basic_entity_size[1] // 4)
             )
-        if direction_in_prev_room == "up":
+        if direction_in_prev_room == "down":
             self.game.player.rect.move_ip(
                 0, -(floor_size[1] - basic_entity_size[1] // 4)
             )

@@ -1,7 +1,6 @@
 import pygame
 from pygame.sprite import Group
 import json
-from src.utils import get_mask_rect
 
 
 # Вспомогательные функции
@@ -30,24 +29,24 @@ def create_sprites_group(sprites_info):
 
 
 class Passage:
-    def __init__(self, from_room=None, to_room=None, passage_info=None):
+    def __init__(self, passage_info):
         self.passage_info = passage_info
-        if passage_info:
-            image = pygame.image.load(self.passage_info["image"]).convert_alpha()
-            self.sprite = create_sprite(image, passage_info)
-        else:
-            self.sprite = None
-        self.from_room = from_room
-        self.to_room = to_room
+        image = pygame.image.load(self.passage_info["image"]).convert_alpha()
+        image = pygame.transform.scale(
+            image, (self.passage_info["width"], self.passage_info["height"])
+        )
+        self.sprite = create_sprite(image, passage_info)
+        self.from_room = None
+        self.to_room = None
 
 
 class Room:
     def __init__(self):
         self.passages_on_direction = {
-            "right": Passage(),
-            "left": Passage(),
-            "up": Passage(),
-            "down": Passage(),
+            "right": None,
+            "left": None,
+            "up": None,
+            "down": None,
         }
         self.load_from_json()
         self.passages = Group()
@@ -62,17 +61,21 @@ class Room:
         self.floor = create_sprites_group(config["floor"])
         self.passages_info = config["passages"]
 
-    def create_passages(self, next_room, direction):
+    def create_passage(self, next_room, direction):
         passage_info = next(
             info for info in self.passages_info if info["direction"] == direction
         )
-        self.passages_on_direction[direction].passage_info = passage_info
-        if self.passages_on_direction[direction].sprite:
-            self.passages_on_direction[direction].from_room = self
-            self.passages_on_direction[direction].to_room = next_room
-            self.passages.add(self.passages_on_direction[direction].sprite)
+        pas = Passage(passage_info)
+        self.passages_on_direction[direction] = pas
+        self.passages_on_direction[direction].from_room = self
+        self.passages_on_direction[direction].to_room = next_room
+        self.passages.add(pas.sprite)
 
     def draw_room(self, screen):
         self.floor.draw(screen)
         self.walls.draw(screen)
         self.passages.draw(screen)
+
+
+"""         for passage in self.passages:
+            print(passage.rect.topleft) """

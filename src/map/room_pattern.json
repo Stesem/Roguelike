@@ -3,8 +3,8 @@
     "width": 1000,
     "height": 564,
     "walls": [
-        {"image": "assets/room/wall_horizontal.png", "x": 32, "y": 0, "width": 936, "height": 32},
-        {"image": "assets/room/wall_horizontal.png", "x": 32, "y": 532, "width": 936, "height": 32},
+        {"image": "assets/room/wall_horizontal.png", "x": 32, "y": 0, "width": 968, "height": 32},
+        {"image": "assets/room/wall_horizontal.png", "x": 32, "y": 532, "width": 968, "height": 32},
         {"image": "assets/room/wall_left.png", "x": 0, "y": 0, "width": 32, "height": 564},
         {"image": "assets/room/wall_right.png", "x": 968, "y": 0, "width": 32, "height": 564}
     ],
@@ -12,9 +12,9 @@
         {"image": "assets/room/floor.png", "x": 32, "y": 32, "width": 936, "height": 500}
     ],
     "passages": [
-        {"direction": "up", "image": "assets/room/passage_vertical.png", "x": 468, "y": 0, "width": 64, "height": 32},
-        {"direction": "down", "image": "assets/room/passage_vertical.png", "x": 468, "y": 532, "width": 64, "height": 32},
-        {"direction": "left", "image": "assets/room/passage_horizontal.png", "x": 0, "y": 234, "width": 32, "height": 64},
-        {"direction": "right", "image": "assets/room/passage_horizontal.png", "x": 968, "y": 234, "width": 32, "height": 64}
+        {"direction": "up", "image": "assets/room/passage_up.png", "x": 452, "y": 0, "width": 96, "height": 32},
+        {"direction": "down", "image": "assets/room/passage_down.png", "x": 452, "y": 532, "width": 96, "height": 32},
+        {"direction": "left", "image": "assets/room/passage_left.png", "x": 0, "y": 234, "width": 32, "height": 96},
+        {"direction": "right", "image": "assets/room/passage_right.png", "x": 968, "y": 234, "width": 32, "height": 96}
     ]
 }

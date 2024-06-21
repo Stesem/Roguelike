@@ -73,14 +73,6 @@
         "documentation": {}
     },
     {
-        "label": "get_mask_rect",
-        "importPath": "src.utils",
-        "description": "src.utils",
-        "isExtraImport": true,
-        "detail": "src.utils",
-        "documentation": {}
-    },
-    {
         "label": "basic_entity_size",
         "importPath": "src.utils",
         "description": "src.utils",
@@ -241,7 +233,7 @@
         "kind": 6,
         "importPath": "src.map.dungeon",
         "description": "src.map.dungeon",
-        "peekOfCode": "class Dungeon:\n    def __init__(self, map_pattern_size, room_quantity):\n        self.map_layout = MapLayout(map_pattern_size, room_quantity)\n        self.map = [\n            [None for _ in range(map_pattern_size)] for _ in range(map_pattern_size)\n        ]\n        self.start_position = self.map_layout.start_position\n        self.generate_map()\n    def _check_neighbors(self, row_index, colomn_index, current_room):\n        neighbor_directions = {",
+        "peekOfCode": "class Dungeon:\n    def __init__(self, map_pattern_size, room_quantity):\n        self.map_layout = MapLayout(map_pattern_size, room_quantity)\n        self.map = [\n            [None for _ in range(map_pattern_size)] for _ in range(map_pattern_size)\n        ]\n        self.start_position = self.map_layout.start_position\n        self.generate_map()\n    def _check_neighbors(self, row_index, column_index):\n        neighbor_directions = {",
         "detail": "src.map.dungeon",
         "documentation": {}
     },
@@ -268,7 +260,7 @@
         "kind": 6,
         "importPath": "src.map.room",
         "description": "src.map.room",
-        "peekOfCode": "class Passage:\n    def __init__(self, from_room=None, to_room=None, passage_info=None):\n        self.passage_info = passage_info\n        if passage_info:\n            image = pygame.image.load(self.passage_info[\"image\"]).convert_alpha()\n            self.sprite = create_sprite(image, passage_info)\n        else:\n            self.sprite = None\n        self.from_room = from_room\n        self.to_room = to_room",
+        "peekOfCode": "class Passage:\n    def __init__(self, passage_info):\n        self.passage_info = passage_info\n        image = pygame.image.load(self.passage_info[\"image\"]).convert_alpha()\n        image = pygame.transform.scale(\n            image, (self.passage_info[\"width\"], self.passage_info[\"height\"])\n        )\n        self.sprite = create_sprite(image, passage_info)\n        self.from_room = None\n        self.to_room = None",
         "detail": "src.map.room",
         "documentation": {}
     },
@@ -277,7 +269,7 @@
         "kind": 6,
         "importPath": "src.map.room",
         "description": "src.map.room",
-        "peekOfCode": "class Room:\n    def __init__(self):\n        self.passages_on_direction = {\n            \"right\": Passage(),\n            \"left\": Passage(),\n            \"up\": Passage(),\n            \"down\": Passage(),\n        }\n        self.load_from_json()\n        self.passages = Group()",
+        "peekOfCode": "class Room:\n    def __init__(self):\n        self.passages_on_direction = {\n            \"right\": None,\n            \"left\": None,\n            \"up\": None,\n            \"down\": None,\n        }\n        self.load_from_json()\n        self.passages = Group()",
         "detail": "src.map.room",
         "documentation": {}
     },
@@ -417,29 +409,11 @@
         "documentation": {}
     },
     {
-        "label": "test_map_layout_create",
-        "kind": 2,
-        "importPath": "test.test_map_layout",
-        "description": "test.test_map_layout",
-        "peekOfCode": "def test_map_layout_create():\n    size = 11\n    map_layout = MapLayout(size)\n    layout_for_assert = [[False for _ in range(size)] for _ in range(size)]\n    assert (\n        map_layout.layout == layout_for_assert\n    ), f\"Error in creating Fallse table, result {map_layout.show()}\"\ndef test_map_layout_show():\n    size = 2\n    map_layout = MapLayout(size)",
-        "detail": "test.test_map_layout",
-        "documentation": {}
-    },
-    {
-        "label": "test_map_layout_show",
-        "kind": 2,
-        "importPath": "test.test_map_layout",
-        "description": "test.test_map_layout",
-        "peekOfCode": "def test_map_layout_show():\n    size = 2\n    map_layout = MapLayout(size)\n    table_for_assert = \"[False, False]\\n[False, False]\"\n    assert (\n        map_layout.show() == table_for_assert\n    ), f\"Error in showing method, result {map_layout.show()}\"\ndef test_map_layout_fill():\n    size = 5\n    elem_cuant = 10",
-        "detail": "test.test_map_layout",
-        "documentation": {}
-    },
-    {
         "label": "test_map_layout_fill",
         "kind": 2,
         "importPath": "test.test_map_layout",
         "description": "test.test_map_layout",
-        "peekOfCode": "def test_map_layout_fill():\n    size = 5\n    elem_cuant = 10\n    map_layout = MapLayout(size)\n    map_layout.fill_layout(elem_cuant)\n    layout_all_false = [[False for _ in range(size)] for _ in range(size)]\n    assert (map_layout.layout != layout_all_false) and (\n        map_layout.elem_count >= elem_cuant\n    ), f\"Error in filling layout, result {map_layout.show()}\"",
+        "peekOfCode": "def test_map_layout_fill():\n    size = 5\n    elem_cuant = 10\n    map_layout = MapLayout(size, elem_cuant)\n    map_layout.fill_layout(elem_cuant)\n    layout_all_false = [[False for _ in range(size)] for _ in range(size)]\n    assert (map_layout.layout != layout_all_false) and (\n        map_layout.elem_count >= elem_cuant\n    ), f\"Error in filling layout, result {map_layout.show()}\"",
         "detail": "test.test_map_layout",
         "documentation": {}
     }

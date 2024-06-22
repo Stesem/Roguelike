@@ -21,10 +21,10 @@ class EnemyManager:
         abomination_quantity = randint(2, 6)
         cultists_quantity = randint(1, 3)
         for _ in range(abomination_quantity):
-            room.enemy_list.append(Abomination(self.game, max_hp=100, room=room))
+            room.enemy_list.append(Abomination(self.game, room=room))
             room.enemy_list[-1].spawn()
         for _ in range(cultists_quantity):
-            room.enemy_list.append(Cultist(self.game, max_hp=60, room=room))
+            room.enemy_list.append(Cultist(self.game, room=room))
             room.enemy_list[-1].spawn()
 
     def add_enemies_to_dingeon(self):

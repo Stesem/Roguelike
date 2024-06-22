@@ -6,18 +6,11 @@ from src.items.bullet import CultistBullet
 
 
 class Enemy(EntityBase):
-    def __init__(self, game, name, max_hp, spawn_room):
+    def __init__(self, game, name, spawn_room):
         super().__init__(game, name)
-        self.max_hp = max_hp
-        self.hp = self.max_hp
         self.room = spawn_room
-        self.death_counter = 1
         self.attack_cd = 1000
         self.attack_timer = 0
-        self.being_attacked_timer = 0
-        self.changing_speed_cd = 1000
-        self.changing_speed_timer = 0
-        self.loot = []
         self.destination_point = None
 
     def spawn(self):
@@ -101,12 +94,7 @@ class Enemy(EntityBase):
             self.set_velocity([0, 0])
 
     def move(self):
-        if (
-            not self.dead
-            and not self.game.player.dead
-            and self.hp > 0
-            and self.can_move
-        ):
+        if not self.game.player.dead and self.can_move:
             self.move_to_player()
         else:
             self.set_velocity([0, 0])
@@ -125,8 +113,8 @@ class Abomination(Enemy):
     damage = 15
     speed = 200
 
-    def __init__(self, game, max_hp, room):
-        super().__init__(game, self.name, max_hp, room)
+    def __init__(self, game, room):
+        super().__init__(game, self.name, room)
 
 
 class Cultist(Enemy):
@@ -134,15 +122,14 @@ class Cultist(Enemy):
     damage = 20
     speed = 300
 
-    def __init__(self, game, max_hp, room):
-        super().__init__(game, self.name, max_hp, room)
+    def __init__(self, game, room):
+        super().__init__(game, self.name, room)
         self.attack_cd = 700
 
     def cast_spell(self):
         if (
             not sum(self.velocity)
             and not self.game.player.dead
-            and not self.dead
             and check_time_passed(self.attack_timer, self.attack_cd)
         ):
             self.attack_timer = pygame.time.get_ticks()
@@ -158,8 +145,7 @@ class Cultist(Enemy):
             )
 
     def move(self):
-        if not self.dead and self.hp > 0:
-            self.stay_away_from_player(radius=350)
+        self.stay_away_from_player(radius=350)
 
     def update(self):
         self.move()

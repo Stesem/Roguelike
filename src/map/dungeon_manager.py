@@ -11,6 +11,7 @@ class DungeonManager:
         self.next_room = None
         self.switch_room = None
         self.create_dungeon_manager()
+        self.finished = False  # Add this to track if the game is finished
 
     def create_dungeon_manager(self):
         self.dungeon = Dungeon(map_size, rooms_quantity)
@@ -21,10 +22,13 @@ class DungeonManager:
     def set_current_room(self, room):
         self.current_room = room
 
+    def check_if_finish_room(self):
+        if self.current_room.type == "finish":
+            self.finished = True
+
     def go_to_next_room(self, passage):
         current_room = self.current_room
         for direction in current_room.passages_on_direction:
-
             if (
                 current_room.passages_on_direction[direction]
                 and current_room.passages_on_direction[direction].sprite == passage
@@ -32,6 +36,7 @@ class DungeonManager:
                 next_room = current_room.passages_on_direction[direction].to_room
                 self.set_current_room(next_room)
                 self.move_player_in_new_room(direction)
+                self.check_if_finish_room()
 
     def move_player_in_new_room(self, direction_in_prev_room):
         if direction_in_prev_room == "right":

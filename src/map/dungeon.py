@@ -9,6 +9,7 @@ class Dungeon:
             [None for _ in range(map_pattern_size)] for _ in range(map_pattern_size)
         ]
         self.start_position = self.map_layout.start_position
+        self.latest_room_position = (self.start_position, self.start_position)
         self.generate_map()
 
     def _check_neighbors(self, row_index, column_index):
@@ -54,6 +55,7 @@ class Dungeon:
             self.map[row_index][column_index].type = "start"
         else:
             self.map[row_index][column_index].type = "normal"
+        self.latest_room_position = (row_index, column_index)
         self._check_neighbors(row_index, column_index)
         if row_index - 1 >= 0:
             self._generate_recursive(row_index - 1, column_index)
@@ -66,3 +68,8 @@ class Dungeon:
 
     def generate_map(self):
         self._generate_recursive(self.start_position, self.start_position)
+        self.mark_latest_room_as_finish()
+
+    def mark_latest_room_as_finish(self):
+        row_index, column_index = self.latest_room_position
+        self.map[row_index][column_index].type = "finish"

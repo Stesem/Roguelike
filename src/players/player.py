@@ -23,8 +23,6 @@ class Player(EntityBase):
         self.room = None
         self.death_counter = 1
         self.shield = 1
-        self.damage = 30
-        self.time = 0
 
     def input(self):
         pressed = pygame.key.get_pressed()
@@ -58,10 +56,6 @@ class Player(EntityBase):
             self.set_velocity(vel_list_fixed)
         else:
             self.set_velocity(vel_list)
-            
-        if pygame.mouse.get_pressed()[0] and pygame.time.get_ticks() - self.time > self.attack_cooldown:
-            self.time = pygame.time.get_ticks()
-            
 
     def getting_hit(self, enemy):
         if self.shield == 0 and not self.dead:
@@ -90,10 +84,6 @@ class Player(EntityBase):
             if any(wall.rect.collidepoint(point) for point in collide_points):
                 self.set_velocity([0, 0])
                 return
-            
-    def atack(self):
-        if not self.dead and not self.hurt:
-            
 
     def update(self):
         if self.death_counter == 0:

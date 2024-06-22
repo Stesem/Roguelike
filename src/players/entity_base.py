@@ -41,7 +41,6 @@ class EntityBase:
                 self.room.enemy_list.remove(self)
 
     def basic_update(self):
-        self.detect_death()
         self.update_hitbox()
         self.entity_animation.update()
         self.rect.move_ip(self.velocity)

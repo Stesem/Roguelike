@@ -1,6 +1,6 @@
 import pygame
 from src.players.animation import load_sprites_for_animation, AnimationHandler
-from src.utils import basic_entity_size, get_mask_rect
+from src.suppor import basic_entity_size, get_mask_rect
 
 
 class EntityBase:
@@ -27,19 +27,11 @@ class EntityBase:
     def set_velocity(self, new_velocity):
         self.velocity = new_velocity
 
-    def slowing_by_hurt(self):
-        base_speed = self.speed
-        hurted_speed = base_speed - 70
-        if self.hurt:
-            self.speed = hurted_speed
-        else:
-            self.speed = base_speed
-
     def moving(self):
         return self.velocity[0] != 0 or self.velocity[1] != 0
 
     def detect_death(self):
-        if self.hp <= 0 and self.dead is False:
+        if self.hp <= 0 and not self.dead:
             self.dead = True
             self.entity_animation.animation_frame = 0
             self.can_move = False

@@ -1,5 +1,5 @@
 from src.map.dungeon import Dungeon
-from src.utils import rooms_quantity, map_size, basic_entity_size, floor_size
+from src.suppor import rooms_quantity, map_size, basic_entity_size, floor_size
 
 
 class DungeonManager:
@@ -62,6 +62,9 @@ class DungeonManager:
             self.game.player.hitbox.move_ip(
                 0, -(floor_size[1] - basic_entity_size[1] // 4)
             )
+
+    def update_dungeon(self):
+        self.current_room.update_room()
 
     def draw_dungeon(self, screen):
         self.current_room.draw_room(screen)

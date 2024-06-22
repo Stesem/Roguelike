@@ -1,7 +1,7 @@
 import pygame
 from src.players.entity_base import EntityBase
 from math import sqrt
-from src.utils import get_mask_rect, world_size
+from src.suppor import get_mask_rect, world_size
 
 pygame.init()
 
@@ -9,7 +9,7 @@ pygame.init()
 class Player(EntityBase):
     name = "player"
     speed = 400
-    max_hp = 100
+    max_hp = 600
     hp = max_hp
 
     def __init__(self, game):
@@ -23,6 +23,8 @@ class Player(EntityBase):
         self.room = None
         self.death_counter = 1
         self.shield = 1
+        self.damage = 30
+        self.time = 0
 
     def input(self):
         pressed = pygame.key.get_pressed()
@@ -50,18 +52,24 @@ class Player(EntityBase):
         rms_velocity = sqrt(pow(vel_list[0], 2) + pow(vel_list[1], 2))
 
         if 0 not in vel_list:
-
             velocity = rms_velocity / (abs(vel_list[0]) + abs(vel_list[1]))
             vel_list_fixed = [elem * velocity for elem in vel_list]
             self.set_velocity(vel_list_fixed)
         else:
             self.set_velocity(vel_list)
 
+        if pygame.mouse.get_pressed()[0] and pygame.time.get_ticks() - self.time > self.attack_cooldown:
+            self.time = pygame.time.get_ticks()
+            mouse_pos = pygame.mouse.get_pos()
+            bullet = PlayerBullet(self.game, self, self.room, self.rect.centerx, self.rect.centery, mouse_pos)
+            self.game.bullet_manager.add_bullet(bullet)
+
     def getting_hit(self, enemy):
         if self.shield == 0 and not self.dead:
             self.hp -= enemy.damage
             if not self.dead:
                 self.hurt = True
+                self.can_get_hurt = False
                 self.entity_animation.hurt_timer_mark = pygame.time.get_ticks()
         if self.shield > 0:
             self.shield -= 1
@@ -83,6 +91,10 @@ class Player(EntityBase):
             if any(wall.rect.collidepoint(point) for point in collide_points):
                 self.set_velocity([0, 0])
                 return
+            
+    def attack(self):
+        if not self.dead and not self.hurt:
+            pass
 
     def update(self):
         if self.death_counter == 0:
@@ -92,6 +104,7 @@ class Player(EntityBase):
         if self.can_move:
             self.rect.move_ip(self.velocity)
             self.hitbox.move_ip(self.velocity)
+        self.detect_death()
 
-    def draw(self, surface):
-        surface.blit(self.image, self.rect)
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)

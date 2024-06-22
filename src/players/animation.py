@@ -1,5 +1,5 @@
 import pygame
-import src.utils as utils
+import src.suppor as utils
 import os
 
 
@@ -80,6 +80,7 @@ class AnimationHandler:
         if pygame.time.get_ticks() - self.hurt_time_marker > invincibility_time:
             self.hurt_time_marker = pygame.time.get_ticks()
             self.entity.hurt = False
+            self.entity.can_get_hurt = True
 
     def run_animation(self):
         if self.entity.dead:

@@ -61,10 +61,5 @@ class Game:
             self.display.blit(self.screen, self.screen_position)
             if self.running:
                 pygame.display.flip()
-            if self.control_screen.is_active: #added___________________________________
-                self.control_screen.update()
-                self.control_screen.draw()
-            else:
-                self.update()
-                self.draw()
+            
         pygame.quit()
